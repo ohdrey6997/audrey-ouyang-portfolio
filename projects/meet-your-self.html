@@ -1,0 +1,369 @@
+<!doctype html>
+<!--
+  SKELETON B — EXPERIENCE / RESEARCH CASE
+  内部规划（不上页面，仅供下笔时对齐方向）:
+    叙事目的: ____
+    证明能力 / Proves: 主 ____ · 副 ____
+  填写说明:
+    - 带 class="ph" 的方括号文字是占位，填完后删掉文字与 class 即可。
+    - .visual-slot 是放图/视频的槽位，按其中注释替换成 <img> 或 <video>。
+    - 走查序列可放 2–4 张：删/加 .gallery 里的 slot 即可。
+    - 这是独立可预览文件；并入正式站点时，把 <style> 内容移进 styles.css 并对齐你的设计变量。
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Meet Your Self — an embodied VR experience exploring loneliness and being alone." />
+    <title>Audrey Ouyang | Meet Your Self</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #242020;
+        --bg-soft: #2c2825;
+        --text: #dfdfdf;
+        --muted: #938d89;
+        --line: rgba(223, 223, 223, 0.14);
+        --line-soft: rgba(223, 223, 223, 0.07);
+        --accent: #9bc862;
+        --font-display: "Optima", "Optima nova", "URW Classico", Candara, "Gill Sans", "Gill Sans MT", "Segoe UI", sans-serif;
+        --font-body: "Manrope", system-ui, sans-serif;
+        --max: 1180px;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-body);
+        font-weight: 400;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      a { color: inherit; text-decoration: none; }
+      img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+      .cursor-light {
+        position: fixed; top: 0; left: 0; width: 520px; height: 520px;
+        margin: -260px 0 0 -260px; pointer-events: none; z-index: 0;
+        background: radial-gradient(circle, rgba(155, 200, 98, 0.12), transparent 60%);
+        transition: opacity 0.4s ease; opacity: 0;
+      }
+
+      .wrap { width: min(92%, var(--max)); margin: 0 auto; }
+
+      .site-header {
+        position: sticky; top: 0; z-index: 10;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 22px 0; backdrop-filter: blur(8px);
+        background: linear-gradient(var(--bg), rgba(11, 14, 13, 0.4));
+        border-bottom: 1px solid var(--line-soft);
+      }
+      .site-header .wrap { display: flex; align-items: center; justify-content: space-between; }
+      .brand { font-family: var(--font-display); font-size: 19px; letter-spacing: 0.01em; }
+      .brand b { color: var(--accent); font-weight: 500; }
+      nav { display: flex; gap: 28px; font-size: 14px; }
+      nav a { color: var(--muted); transition: color 0.25s; }
+      nav a:hover { color: var(--text); }
+
+      .eyebrow {
+        font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+        color: var(--accent); font-weight: 500;
+      }
+      .ph { color: var(--muted); border-bottom: 1px dotted var(--line); }
+
+      .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+      @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+      /* HERO */
+      .hero { position: relative; padding: 80px 0 56px; }
+      .hero::before {
+        content: ""; position: absolute; top: -120px; left: 50%; width: 760px; height: 520px;
+        transform: translateX(-50%); z-index: -1;
+        background: radial-gradient(ellipse at center, rgba(155, 200, 98, 0.14), transparent 65%);
+        filter: blur(20px);
+      }
+      .back-link { font-size: 13px; color: var(--muted); display: inline-flex; gap: 8px; margin-bottom: 40px; }
+      .back-link:hover { color: var(--text); }
+      .hero h1 {
+        font-family: var(--font-display); font-weight: 500;
+        font-size: clamp(40px, 7vw, 84px); line-height: 1.05; letter-spacing: -0.005em;
+        margin: 14px 0 0; max-width: 16ch; color: var(--accent);
+      }
+      /* hook = question, set larger and as the emotional lead */
+      .hook {
+        font-family: var(--font-display); font-weight: 400; font-style: italic;
+        font-size: clamp(22px, 3vw, 34px); line-height: 1.3; color: var(--text);
+        max-width: none; margin: 28px 0 0;
+      }
+      .meta-strip {
+        display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+        margin-top: 52px; padding-top: 26px; border-top: 1px solid var(--line);
+      }
+      .meta-strip dt { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+      .meta-strip dd { font-size: 15px; }
+
+      .section { padding: 60px 0; border-top: 1px solid var(--line-soft); }
+      .section-grid { display: grid; grid-template-columns: minmax(0, 210px) 1fr; gap: 40px; }
+      .section h2 {
+        font-family: var(--font-display); font-weight: 500; font-size: clamp(24px, 3vw, 34px);
+        line-height: 1.18; letter-spacing: -0.005em; margin-bottom: 18px; color: var(--accent);
+      }
+      .section .body p { font-size: clamp(16px, 1.4vw, 18px); color: var(--text); max-width: none; }
+      .section .body p + p { margin-top: 16px; }
+
+      .media-full { padding: 8px 0 0; }
+      .media-full .wrap { padding-left: 250px; }
+      .media-full figcaption { margin-top: 5px; }
+      .visual-slot {
+        position: relative; width: 100%; border: 1px dashed var(--line);
+        border-radius: 14px; background: var(--bg-soft);
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        color: var(--muted); text-align: center; gap: 6px; overflow: hidden;
+      }
+      .visual-slot.ratio-wide { aspect-ratio: 16 / 9; }
+      .visual-slot.ratio-tall { aspect-ratio: 3 / 4; }
+      .visual-slot .vs-label { font-size: 13px; letter-spacing: 0.04em; }
+      .visual-slot .vs-hint { font-size: 12px; color: rgba(141, 145, 138, 0.7); }
+      figcaption { font-size: 13px; color: var(--muted); margin-top: 12px; }
+
+      .event-grid {
+        display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px;
+      }
+      .event-grid figure { min-width: 0; }
+      .event-grid img {
+        aspect-ratio: 4 / 5; object-position: center; border-radius: 14px;
+      }
+      .event-grid figure:first-child img { object-position: center 68%; }
+
+      .video-player {
+        position: relative; aspect-ratio: 16 / 9; margin-top: 34px;
+        overflow: hidden; border-radius: 14px; background: #111;
+      }
+      .youtube-embed { display: block; width: 100%; height: 100%; border: 0; }
+      .video-player video { cursor: pointer; }
+      .video-center-play {
+        position: absolute; inset: 50% auto auto 50%; transform: translate(-50%, -50%);
+        width: 68px; height: 68px; display: grid; place-items: center;
+        border: 1px solid rgba(255,255,255,.42); border-radius: 50%;
+        color: #fff; background: rgba(20,20,20,.34); backdrop-filter: blur(8px);
+        cursor: pointer; transition: opacity .25s ease, transform .25s ease, background .25s ease;
+      }
+      .video-center-play:hover { background: rgba(20,20,20,.58); transform: translate(-50%, -50%) scale(1.04); }
+      .video-center-play svg { width: 24px; height: 24px; margin-left: 3px; fill: currentColor; }
+      .video-player.is-playing .video-center-play { opacity: 0; pointer-events: none; }
+      .video-controls-trigger {
+        position: absolute; left: 0; right: 0; bottom: 0; height: 28%; z-index: 1;
+      }
+      .video-controls {
+        position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+        display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: 14px;
+        padding: 30px 18px 14px; opacity: 0; transform: translateY(8px);
+        pointer-events: none;
+        background: linear-gradient(transparent, rgba(0,0,0,.82));
+        transition: opacity .25s ease, transform .25s ease;
+      }
+      .video-player:has(.video-controls-trigger:hover) .video-controls,
+      .video-player:has(.video-controls:hover) .video-controls {
+        opacity: 1; transform: none; pointer-events: auto;
+      }
+      .video-control {
+        border: 0; background: transparent; color: #fff; cursor: pointer;
+        display: grid; place-items: center; font: 500 12px/1 var(--font-body);
+      }
+      .video-control svg { width: 20px; height: 20px; fill: currentColor; }
+      .video-progress { width: 100%; accent-color: var(--accent); cursor: pointer; }
+
+      .gallery {
+        display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 28px;
+      }
+      .gallery figure { min-width: 0; }
+      .gallery img { aspect-ratio: 4 / 3; object-position: center 68%; border-radius: 12px; }
+      .participants-figure { margin-top: 28px; max-width: none; }
+      .participants-figure img { height: auto; aspect-ratio: 16 / 9; border-radius: 14px; }
+
+      .pullquote {
+        font-family: var(--font-display); font-style: italic; font-weight: 400;
+        font-size: clamp(20px, 2.4vw, 28px); line-height: 1.4; max-width: none;
+        border-left: 2px solid var(--accent); padding-left: 22px; margin-top: 24px;
+      }
+
+      .credit-line { font-size: clamp(16px, 1.4vw, 18px); color: var(--text); }
+      .section .body p.reference-caption {
+        width: 100%; margin-top: 34px; font-size: 13px; color: var(--muted); line-height: 1.6;
+      }
+      .reference-caption a { overflow-wrap: anywhere; }
+      .reference-caption a:hover { color: var(--text); }
+      .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+      .tags span { font-size: 12px; color: var(--text); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; }
+
+      .pager { display: flex; justify-content: space-between; gap: 20px; padding: 44px 0 90px; border-top: 1px solid var(--line-soft); }
+      .pager a { font-size: 14px; color: var(--muted); transition: color 0.25s; }
+      .pager a:hover { color: var(--accent); }
+      .pager .lbl { display: block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; }
+
+      @media (max-width: 760px) {
+        .section-grid { grid-template-columns: 1fr; gap: 14px; }
+        .meta-strip { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+        nav { gap: 18px; }
+        .media-full .wrap { padding-left: 0; }
+        .event-grid { gap: 8px; }
+        .event-grid img { aspect-ratio: 3 / 4; }
+        .gallery { gap: 6px; }
+        .gallery img { aspect-ratio: 3 / 4; }
+        .gallery figcaption { font-size: 10px; }
+        .video-center-play { width: 54px; height: 54px; }
+        .video-controls { gap: 8px; padding: 24px 10px 10px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor-light" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="../index.html">Audrey&nbsp;<b>Ouyang</b></a>
+        <nav aria-label="Main navigation">
+          <a href="../index.html#work">Work</a>
+          <a href="../index.html#about">About</a>
+          <a href="../index.html#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- 1. HERO -->
+      <section class="hero">
+        <div class="wrap">
+          <a class="back-link" href="../index.html#work">&larr; Back to Work</a>
+          <p class="eyebrow">Experience Design · Immersive Narrative · Audience Research</p>
+          <h1>Meet Your Self</h1>
+          <p class="hook">What does it feel like to be alone — when you’re the only one in the room?</p>
+
+          <dl class="meta-strip">
+            <div><dt>Context</dt><dd>UNSW Big Anxiety Research Centre · “Loneliness &amp; Being Alone” festival</dd></div>
+            <div><dt>Role</dt><dd>Concept Development / Instructor</dd></div>
+            <div><dt>Year</dt><dd>April 2026</dd></div>
+            <div><dt>Venue</dt><dd>UNSW Health Translation Hub</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- 2. THE QUESTION -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">The Question</p>
+          <div class="body">
+            <h2>Solitude is everywhere, but almost nothing is designed for it.</h2>
+            <p>Loneliness and being alone are near-universal, yet rarely given a space of their own. The question behind Meet Your Self was how to let someone meet their own experience of being alone — to see it, shape it, and sit with it — without being told how they should feel. Rather than treating loneliness only as an inner mood, the work asks whether it can be made visible: something that can be seen, shaped, and re-related to through the body.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. RESEARCH & METHOD -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">Research &amp; method</p>
+          <div class="body">
+            <p>Meet Your Self is built on EmbodiMap, a VR body-mapping method developed at fEEL Lab in UNSW Big Anxiety Research Center(fEELab, 2024). It lets a participant create a life-size human figure, adjust its posture, and draw into and around the body to externalise thoughts, feelings, and sensations in space. I reframed EmbodiMap as a space for self-encounter, structuring the session into three stages — ‘constructing the self’, ‘emotional mapping’, and ‘co-existing with the self’.</p>
+            <p>It’s grounded in evidence, not assumption. I ran the experience on myself first, then conducted two qualitative user tests with first-time users and wrote it up as a formal evaluation of the onboarding. The tests showed that long pre-experience explanation overloaded users, simultaneous multi-user instruction fragmented attention, and — most importantly — that fully open, abstract space created uncertainty rather than freedom. The recommendation that came out of it: begin not with “how to use the system,” but with “how to enter the feeling.”</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. EVENT DOCUMENTATION & VIDEO -->
+      <section class="media-full reveal">
+        <div class="wrap">
+          <div class="event-grid">
+            <figure>
+              <img src="../files/meet-your-self/instructing.jpg" alt="Audrey instructing a participant wearing a VR headset" />
+              <figcaption>Guiding a participant through the EmbodiMap workshop.</figcaption>
+            </figure>
+            <figure>
+              <img src="../files/meet-your-self/embodimap-workshop.jpg" alt="EmbodiMap listed among the VR experiences at the festival" />
+              <figcaption>EmbodiMap at the “Loneliness &amp; Being Alone” festival, 17 April 2026.</figcaption>
+            </figure>
+          </div>
+          <figure>
+            <div class="video-player" data-video-player>
+              <iframe class="youtube-embed" src="https://www.youtube-nocookie.com/embed/sQgeAJiOGTg?controls=1&amp;rel=0" title="Meet Your Self experience film" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <figcaption>Meet Your Self concept film</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 5. THE EXPERIENCE -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">The Experience</p>
+          <div class="body">
+            <p>A participant puts on the headset and is guided through three stages. They first construct a self — posing a life-size figure that stands in for them. They then map emotion onto it, choosing colours and marks to draw their feelings and story directly onto the body. Finally they co-exist with that self — hugging it to bring it alive, interacting and leaving a trace, watching it move — so the loneliness they arrived with can be seen, held, and re-related to.</p>
+
+            <div class="gallery">
+              <figure><img src="../files/meet-your-self/construct-a-self.png" alt="Concept illustration of constructing a self in VR" /><figcaption>1 · Construct a self</figcaption></figure>
+              <figure><img src="../files/meet-your-self/map-emotion.png" alt="Concept illustration of mapping emotion onto a figure" /><figcaption>2 · Map emotion</figcaption></figure>
+              <figure><img src="../files/meet-your-self/co-exist.png" alt="Concept illustration of co-existing with the created self" /><figcaption>3 · Co-exist with the self</figcaption></figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. WHAT IT REVEALED -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">What it revealed</p>
+          <div class="body">
+            <p>Across both user tests, one pattern was consistent: moving and posing the figure was far more immediately engaging than abstract emotional drawing — and participants began to relate to the figures as “a part” of themselves, but only once the technical learning settled. Openness alone didn’t create freedom; without an emotional cue, people spent their energy deciding what the experience wanted from them. That finding reshaped the design: open with a prepared emotional frame and a clearer entry point, so a participant moves from adjusting an interface to actually meeting themselves.</p>
+            <figure class="participants-figure">
+              <img src="../files/meet-your-self/participants.jpg" alt="Participants trying the Meet Your Self VR experience" />
+              <figcaption>Participants encountering and moving with their virtual selves during the Embodimap workshop. 17 Apr 2026</figcaption>
+            </figure>
+            <blockquote class="pullquote">Design from evidence and emotional truth — begin not with “how to use the system,” but with “how to enter the feeling.”</blockquote>
+            <p class="reference-caption">fEELab. (2024, July 17). <em>Embodimap - fEEL</em>. FEEL. <a href="https://feel-lab.org/research_projects/embodimap/">https://feel-lab.org/research_projects/embodimap/</a></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. CREDITS -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">Credit</p>
+          <div class="body">
+            <p class="credit-line">UNSW Big Anxiety Research Centre · fEEL Lab · EmbodiMap (Supervised by Dr. Gail Kenning)</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PREV / NEXT -->
+      <nav class="pager" aria-label="Project navigation">
+        <div class="wrap" style="display:flex; justify-content:space-between; width:min(92%,var(--max));">
+          <a href="dforward-gala.html"><span class="lbl">Previous</span><span class="ph">D.Forward 4th Anniversary Gala</span></a>
+          <a href="neorality.html" style="text-align:right;"><span class="lbl">Next</span><span class="ph">Neorality</span></a>
+        </div>
+      </nav>
+    </main>
+
+    <script>
+      const light = document.querySelector(".cursor-light");
+      window.addEventListener("pointermove", (e) => {
+        light.style.opacity = "1";
+        light.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      });
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } }),
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+    </script>
+    <script src="../project-embed.js?project=5&amp;v=20260614c"></script>
+  </body>
+</html>

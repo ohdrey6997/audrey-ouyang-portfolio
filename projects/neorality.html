@@ -1,0 +1,356 @@
+<!doctype html>
+<!--
+  SKELETON B — EXPERIENCE / RESEARCH CASE
+  内部规划（不上页面，仅供下笔时对齐方向）:
+    叙事目的: ____
+    证明能力 / Proves: 主 ____ · 副 ____
+  填写说明:
+    - 带 class="ph" 的方括号文字是占位，填完后删掉文字与 class 即可。
+    - .visual-slot 是放图/视频的槽位，按其中注释替换成 <img> 或 <video>。
+    - 走查序列可放 2–4 张：删/加 .gallery 里的 slot 即可。
+    - 这是独立可预览文件；并入正式站点时，把 <style> 内容移进 styles.css 并对齐你的设计变量。
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Neorality — a speculative interactive installation about the grey digital divide." />
+    <title>Audrey Ouyang | Neorality</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #242020;
+        --bg-soft: #2c2825;
+        --text: #dfdfdf;
+        --muted: #938d89;
+        --line: rgba(223, 223, 223, 0.14);
+        --line-soft: rgba(223, 223, 223, 0.07);
+        --accent: #9bc862;
+        --font-display: "Optima", "Optima nova", "URW Classico", Candara, "Gill Sans", "Gill Sans MT", "Segoe UI", sans-serif;
+        --font-body: "Manrope", system-ui, sans-serif;
+        --max: 1180px;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-body);
+        font-weight: 400;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      a { color: inherit; text-decoration: none; }
+      img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+      .cursor-light {
+        position: fixed; top: 0; left: 0; width: 520px; height: 520px;
+        margin: -260px 0 0 -260px; pointer-events: none; z-index: 0;
+        background: radial-gradient(circle, rgba(155, 200, 98, 0.12), transparent 60%);
+        transition: opacity 0.4s ease; opacity: 0;
+      }
+
+      .wrap { width: min(92%, var(--max)); margin: 0 auto; }
+
+      .site-header {
+        position: sticky; top: 0; z-index: 10;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 22px 0; backdrop-filter: blur(8px);
+        background: linear-gradient(var(--bg), rgba(11, 14, 13, 0.4));
+        border-bottom: 1px solid var(--line-soft);
+      }
+      .site-header .wrap { display: flex; align-items: center; justify-content: space-between; }
+      .brand { font-family: var(--font-display); font-size: 19px; letter-spacing: 0.01em; }
+      .brand b { color: var(--accent); font-weight: 500; }
+      nav { display: flex; gap: 28px; font-size: 14px; }
+      nav a { color: var(--muted); transition: color 0.25s; }
+      nav a:hover { color: var(--text); }
+
+      .eyebrow {
+        font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+        color: var(--accent); font-weight: 500;
+      }
+      .ph { color: var(--muted); border-bottom: 1px dotted var(--line); }
+
+      .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+      @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+      /* HERO */
+      .hero { position: relative; padding: 80px 0 56px; }
+      .hero::before {
+        content: ""; position: absolute; top: -120px; left: 50%; width: 760px; height: 520px;
+        transform: translateX(-50%); z-index: -1;
+        background: radial-gradient(ellipse at center, rgba(155, 200, 98, 0.14), transparent 65%);
+        filter: blur(20px);
+      }
+      .back-link { font-size: 13px; color: var(--muted); display: inline-flex; gap: 8px; margin-bottom: 40px; }
+      .back-link:hover { color: var(--text); }
+      .hero h1 {
+        font-family: var(--font-display); font-weight: 500;
+        font-size: clamp(40px, 7vw, 84px); line-height: 1.05; letter-spacing: -0.005em;
+        margin: 14px 0 0; max-width: none; color: var(--accent);
+      }
+      /* hook = question, set larger and as the emotional lead */
+      .hook {
+        font-family: var(--font-display); font-weight: 400; font-style: italic;
+        font-size: clamp(22px, 3vw, 34px); line-height: 1.3; color: var(--text);
+        max-width: none; margin: 28px 0 0; white-space: nowrap;
+      }
+      .meta-strip {
+        display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+        margin-top: 52px; padding-top: 26px; border-top: 1px solid var(--line);
+      }
+      .meta-strip dt { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+      .meta-strip dd { font-size: 15px; }
+
+      .section { padding: 60px 0; border-top: 1px solid var(--line-soft); }
+      .section-grid { display: grid; grid-template-columns: minmax(0, 210px) 1fr; gap: 40px; }
+      .section h2 {
+        font-family: var(--font-display); font-weight: 500; font-size: clamp(24px, 3vw, 34px);
+        line-height: 1.18; letter-spacing: -0.005em; margin-bottom: 18px; color: var(--accent);
+      }
+      .section .body { min-width: 0; }
+      .section .body p { font-size: clamp(16px, 1.4vw, 18px); color: var(--text); max-width: none; }
+      .section .body p + p { margin-top: 16px; }
+
+      .media-full { padding: 8px 0 0; }
+      .visual-slot {
+        position: relative; width: 100%; border: 1px dashed var(--line);
+        border-radius: 14px; background: var(--bg-soft);
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        color: var(--muted); text-align: center; gap: 6px; overflow: hidden;
+      }
+      .visual-slot.ratio-wide { aspect-ratio: 16 / 9; }
+      .visual-slot.ratio-tall { aspect-ratio: 3 / 4; }
+      .visual-slot .vs-label { font-size: 13px; letter-spacing: 0.04em; }
+      .visual-slot .vs-hint { font-size: 12px; color: rgba(141, 145, 138, 0.7); }
+      figcaption { font-size: 13px; color: var(--muted); margin-top: 12px; }
+
+      .gallery, .build-gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 14px; row-gap: 42px; margin-top: 28px; }
+      .gallery, .build-gallery { margin-top: 0; }
+      .gallery { row-gap: 22px; }
+      .media-card { min-width: 0; }
+      .media-card img { height: auto; aspect-ratio: 16 / 9; border-radius: 10px; }
+      .media-card figcaption { margin-top: 4px; }
+      .video-player {
+        position: relative; overflow: hidden; aspect-ratio: 16 / 9;
+        border-radius: 14px; background: #111;
+      }
+      .youtube-embed { display: block; width: 100%; height: 100%; border: 0; }
+      .video-player video { width: 100%; height: 100%; object-fit: cover; }
+      .video-play-overlay {
+        position: absolute; inset: 0; display: grid; place-items: center;
+        border: 0; color: var(--text); background: rgba(0, 0, 0, 0.12); cursor: pointer;
+        transition: background 0.25s, opacity 0.25s;
+      }
+      .video-play-overlay:hover { background: rgba(0, 0, 0, 0.22); }
+      .video-play-overlay[hidden] { display: none; }
+      .video-play-overlay span {
+        display: grid; place-items: center; width: 70px; height: 70px;
+        border: 1px solid rgba(255, 255, 255, 0.55); border-radius: 50%;
+        background: rgba(0, 0, 0, 0.42); backdrop-filter: blur(5px);
+        font-size: 28px; padding-left: 4px;
+      }
+      .video-controls {
+        position: absolute; left: 0; right: 0; bottom: 0;
+        display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: 12px;
+        padding: 30px 16px 12px; background: linear-gradient(transparent, rgba(0, 0, 0, 0.78));
+        opacity: 0; transform: translateY(10px); pointer-events: none;
+        transition: opacity 0.22s ease, transform 0.22s ease;
+      }
+      .video-player.show-controls .video-controls,
+      .video-controls:focus-within { opacity: 1; transform: none; pointer-events: auto; }
+      .video-control {
+        min-width: 30px; height: 30px; padding: 0 5px; border: 0; background: transparent;
+        color: #fff; font: 500 12px/1 var(--font-body); cursor: pointer;
+      }
+      .video-control svg { width: 19px; height: 19px; fill: currentColor; }
+      .video-progress { width: 100%; accent-color: var(--accent); cursor: pointer; }
+
+      .pullquote {
+        font-family: var(--font-display); font-style: italic; font-weight: 400;
+        font-size: clamp(20px, 2.4vw, 28px); line-height: 1.4; max-width: none;
+        border-left: 2px solid var(--accent); padding-left: 22px; margin-top: 24px;
+      }
+      .references { list-style: none; margin-top: 24px; display: grid; gap: 10px; }
+      .references li { color: var(--muted); font-size: 12px; line-height: 1.6; padding-left: 14px; text-indent: -14px; }
+      .references cite { font-style: italic; }
+      .references a { overflow-wrap: anywhere; }
+
+      .credits-grid { display: grid; grid-template-columns: 1fr; gap: 28px; }
+      .credits-grid dt { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+      .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+      .tags span { font-size: 12px; color: var(--text); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; }
+
+      .pager { display: flex; justify-content: space-between; gap: 20px; padding: 44px 0 90px; border-top: 1px solid var(--line-soft); }
+      .pager a { font-size: 14px; color: var(--muted); transition: color 0.25s; }
+      .pager a:hover { color: var(--accent); }
+      .pager .lbl { display: block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; }
+
+      @media (max-width: 760px) {
+        .section-grid { grid-template-columns: 1fr; gap: 14px; }
+        .meta-strip { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+        .credits-grid { grid-template-columns: 1fr; }
+        .gallery, .build-gallery { grid-template-columns: 1fr; }
+        .hook { white-space: normal; }
+        nav { gap: 18px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor-light" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="../index.html">Audrey&nbsp;<b>Ouyang</b></a>
+        <nav aria-label="Main navigation">
+          <a href="../index.html#work">Work</a>
+          <a href="../index.html#about">About</a>
+          <a href="../index.html#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- 1. HERO -->
+      <section class="hero">
+        <div class="wrap">
+          <a class="back-link" href="../index.html#work">&larr; Back to Work</a>
+          <p class="eyebrow">Speculative Design · Interactive Installation · Social Impact</p>
+          <h1>Neorality: Reclaiming Reality</h1>
+          <p class="hook">When the world goes digital, who stops being seen?</p>
+
+          <dl class="meta-strip">
+            <div><dt>Role</dt><dd>Designer/Researcher</dd></div>
+            <div><dt>Theme</dt><dd>Grey Digital Divide in Rural China · SDG 10</dd></div>
+            <div><dt>Year</dt><dd>Sep 2025 - Nov 2025</dd></div>
+            <div><dt>Venue</dt><dd>UNSW Term 3 2025 DDES9016 Capstone Studio 1</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- 2. THE QUESTION -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">The Question</p>
+          <div class="body">
+            <h2>Digital exclusion is usually shown as a statistic. What if you could feel it?</h2>
+            <p>In China, hundreds of millions of older adults live behind a grey digital divide — health codes, payments, and public services that assume everyone is online (Song et al., 2021; Cui et al., 2024). The usual telling is a number. Neorality asks the harder question: what does it feel like to be made invisible by a system that takes your presence for granted — and what would it take to draw yourself back into being seen, heard, and present?</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. RESEARCH & METHOD -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">Research &amp; method</p>
+          <div class="body">
+            <p>The work grew out of a research report on China's grey digital divide, which traced the divide past a simple “access gap” to something deeper: the devaluing of non-digital cultural capital — the oral histories, lived memory, and ways of knowing that don't translate into an app. I reframed the problem from access to a crisis of being seen, valued, and present, and grounded it in the right to choose what reality you live in (SDG 10).</p>
+            <p>From there I used speculative design to push it into 2050: a future where reality itself is contested, and a coined idea — Neorality — insists that the orality and presence of the excluded still count as real. The method was as material as it was conceptual: a fog “fourth wall” to be broken, cross-line lasers, projection, and an audio-reactive system in TouchDesigner so that vocal qualities drive the light — turning interaction into a form of discursive authorship rather than decoration.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. HERO VISUAL (full-bleed) -->
+      <section class="media-full reveal">
+        <div class="wrap">
+          <figure>
+            <div class="video-player">
+              <iframe class="youtube-embed" src="https://www.youtube-nocookie.com/embed/6rwd7L4xXJs?controls=1&amp;rel=0" title="Neorality installation film" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <figcaption>Design Studio Project Brief - Neorality: Reclaiming Reality</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 5. THE EXPERIENCE -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">The Experience</p>
+          <div class="body">
+            <div class="gallery">
+              <figure class="media-card"><img src="../assets/1.png" alt="Neorality experience view 1" /><figcaption>1. Entering the contested reality</figcaption></figure>
+              <figure class="media-card"><img src="../assets/2.png" alt="Neorality experience view 2" /><figcaption>2. Watching the intersections (laser&amp;fabric) reacted by himself</figcaption></figure>
+              <figure class="media-card"><img src="../assets/3.png" alt="Neorality experience view 3" /><figcaption>3. Encountering the 'self' and infinitive extended reality in the mirror</figcaption></figure>
+              <figure class="media-card"><img src="../assets/4.png" alt="Neorality experience view 4" /><figcaption>4. Observing the moving traces of dynamic lasers made by his movement</figcaption></figure>
+              <figure class="media-card"><img src="../assets/5.png" alt="Neorality experience view 5" /><figcaption>5. Turning around and Facing the fourth wall (projection curtain)</figcaption></figure>
+              <figure class="media-card"><img src="../assets/6.png" alt="Neorality experience view 6" /><figcaption>6. Watching his shadow interacting with the sphere shaped by his voice</figcaption></figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. HOW IT BUILDS -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">How it builds</p>
+          <div class="body">
+            <div class="build-gallery">
+              <figure class="media-card"><img src="../assets/how-it-builds-1.png" alt="Initial spatial concept sketch" /><figcaption>01 · Spatial Concept Sketch</figcaption></figure>
+              <figure class="media-card"><img src="../assets/experiment-1-dgvs.jpeg" alt="DGVS fabric and laser test" /><figcaption>02 · ‘DGVS’ - Fabric &amp; Laser Test</figcaption></figure>
+              <figure class="media-card"><img src="../assets/experiment-2-memory.png" alt="Memory audio visualizing test" /><figcaption>03 · ‘Memory’ Audio Visualizing Test via TouchDesigner</figcaption></figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. WHAT IT REVEALED -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">What it revealed</p>
+          <div class="body">
+            <p>What surfaced through making was something the research alone couldn't name: the grey digital divide was never really about access or skill, but about authorship — about who holds the right to decide what counts as real. Inside the tracked space, the laser planes bend toward a person's own voice and movement, so a visitor feels, briefly and bodily, the inverse of what rural elders live — a world that refuses to hold still without them, a system forced to realign itself around their presence. The fabric remnants left dangling, bits of land-based culture that resist erasure, became the most legible part of the work: memory the digital couldn't fully metabolise.</p>
+            <blockquote class="pullquote">“Conceptually rich and intellectually ambitious… design explorations that successfully translate abstract sociopolitical tensions into visceral material realities.”</blockquote>
+            <figcaption>Studio Feedback · High Distinction (90/100)</figcaption>
+            <ul class="references" aria-label="References">
+              <li>· Cui, Y. He, Y. Xu, X, Zhou, L., Jonathan Aseye Nutakor. &amp; Zhao, L. (2024). Cultural capital, the digital divide, and the health of older adults: Amoderated mediation effect test. <cite>BMC Public Health</cite>, 24(1). <a href="https://doi.org/10.1186/s12889-024-17831-4">https://doi.org/10.1186/s12889-024-17831-4</a>;</li>
+              <li>· Song, Y., Qian, C., &amp; Pickard, S. (2021). Age-Related digital divide during the covid-19 pandemic in China. <cite>International Journal of Environmental Research and Public Health</cite>, 18(21), 11285. <a href="https://doi.org/10.3390/ijerph182111285">https://doi.org/10.3390/ijerph182111285</a>.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. CREDITS -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">Special thanks</p>
+          <div class="body">
+            <dl class="credits-grid" style="margin-bottom: 28px;">
+              <div><dd>Dr. Patricia Flanagan &amp; Jonathan Shaw, Faculty of Art, Design and Architecture, UNSW Sydney</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- PREV / NEXT -->
+      <nav class="pager" aria-label="Project navigation">
+        <div class="wrap" style="display:flex; justify-content:space-between; width:min(92%,var(--max));">
+          <a href="meet-your-self.html"><span class="lbl">Previous</span><span class="ph">Meet Your Self</span></a>
+          <a href="de-gree.html" style="text-align:right;"><span class="lbl">Next</span><span class="ph">DE-GREE</span></a>
+        </div>
+      </nav>
+    </main>
+
+    <script>
+      const light = document.querySelector(".cursor-light");
+      window.addEventListener("pointermove", (e) => {
+        light.style.opacity = "1";
+        light.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      });
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } }),
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+    </script>
+    <script src="../project-embed.js?project=6&amp;v=20260614c"></script>
+  </body>
+</html>

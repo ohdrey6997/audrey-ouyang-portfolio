@@ -1,0 +1,455 @@
+<!doctype html>
+<!--
+  SKELETON B — EXPERIENCE / RESEARCH CASE
+  内部规划（不上页面，仅供下笔时对齐方向）:
+    叙事目的: ____
+    证明能力 / Proves: 主 ____ · 副 ____
+  填写说明:
+    - 带 class="ph" 的方括号文字是占位，填完后删掉文字与 class 即可。
+    - .visual-slot 是放图/视频的槽位，按其中注释替换成 <img> 或 <video>。
+    - 走查序列可放 2–4 张：删/加 .gallery 里的 slot 即可。
+    - 这是独立可预览文件；并入正式站点时，把 <style> 内容移进 styles.css 并对齐你的设计变量。
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="DE-GREE: Identity Anxiety in China's AI Transition." />
+    <title>Audrey Ouyang | DE-GREE: Identity Anxiety in China's AI Transition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #242020;
+        --bg-soft: #2c2825;
+        --text: #dfdfdf;
+        --muted: #938d89;
+        --line: rgba(223, 223, 223, 0.14);
+        --line-soft: rgba(223, 223, 223, 0.07);
+        --accent: #9bc862;
+        --font-display: "Optima", "Optima nova", "URW Classico", Candara, "Gill Sans", "Gill Sans MT", "Segoe UI", sans-serif;
+        --font-body: "Manrope", system-ui, sans-serif;
+        --max: 1180px;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-body);
+        font-weight: 400;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      a { color: inherit; text-decoration: none; }
+      img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+      .cursor-light {
+        position: fixed; top: 0; left: 0; width: 520px; height: 520px;
+        margin: -260px 0 0 -260px; pointer-events: none; z-index: 0;
+        background: radial-gradient(circle, rgba(155, 200, 98, 0.12), transparent 60%);
+        transition: opacity 0.4s ease; opacity: 0;
+      }
+
+      .wrap { width: min(92%, var(--max)); margin: 0 auto; }
+
+      .site-header {
+        position: sticky; top: 0; z-index: 10;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 22px 0; backdrop-filter: blur(8px);
+        background: linear-gradient(var(--bg), rgba(11, 14, 13, 0.4));
+        border-bottom: 1px solid var(--line-soft);
+      }
+      .site-header .wrap { display: flex; align-items: center; justify-content: space-between; }
+      .brand { font-family: var(--font-display); font-size: 19px; letter-spacing: 0.01em; }
+      .brand b { color: var(--accent); font-weight: 500; }
+      nav { display: flex; gap: 28px; font-size: 14px; }
+      nav a { color: var(--muted); transition: color 0.25s; }
+      nav a:hover { color: var(--text); }
+
+      .eyebrow {
+        font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+        color: var(--accent); font-weight: 500;
+      }
+      .ph { color: var(--muted); border-bottom: 1px dotted var(--line); }
+
+      .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+      @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+      /* HERO */
+      .hero { position: relative; padding: 80px 0 56px; }
+      .hero::before {
+        content: ""; position: absolute; top: -120px; left: 50%; width: 760px; height: 520px;
+        transform: translateX(-50%); z-index: -1;
+        background: radial-gradient(ellipse at center, rgba(155, 200, 98, 0.14), transparent 65%);
+        filter: blur(20px);
+      }
+      .back-link { font-size: 13px; color: var(--muted); display: inline-flex; gap: 8px; margin-bottom: 40px; }
+      .back-link:hover { color: var(--text); }
+      .hero h1 {
+        font-family: var(--font-display); font-weight: 500;
+        font-size: clamp(40px, 7vw, 84px); line-height: 1.05; letter-spacing: -0.005em;
+        margin: 14px 0 0; color: var(--accent);
+      }
+      /* hook = question, set larger and as the emotional lead */
+      .hook {
+        font-family: var(--font-display); font-weight: 400; font-style: italic;
+        font-size: clamp(22px, 3vw, 34px); line-height: 1.3; color: var(--text);
+        margin: 28px 0 0;
+      }
+      .meta-strip {
+        display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+        margin-top: 52px; padding-top: 26px; border-top: 1px solid var(--line);
+      }
+      .meta-strip dt { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+      .meta-strip dd { font-size: 15px; }
+
+      .section { padding: 60px 0; border-top: 1px solid var(--line-soft); }
+      .section-grid { display: grid; grid-template-columns: minmax(0, 210px) 1fr; gap: 40px; }
+      .section h2 {
+        font-family: var(--font-display); font-weight: 500; font-size: clamp(24px, 3vw, 34px);
+        line-height: 1.18; letter-spacing: -0.005em; margin-bottom: 18px; color: var(--accent);
+      }
+      .section .body p { font-size: clamp(16px, 1.4vw, 18px); color: var(--text); }
+      .section .body p + p { margin-top: 16px; }
+
+      .media-full { padding: 8px 0 0; }
+      .video-player {
+        position: relative; aspect-ratio: 16 / 9; border-radius: 14px;
+        overflow: hidden; background: var(--bg-soft);
+      }
+      .youtube-embed { display: block; width: 100%; height: 100%; border: 0; }
+      .hero-video { width: 100%; height: 100%; object-fit: cover; }
+      .video-center-play {
+        position: absolute; inset: 50% auto auto 50%; transform: translate(-50%, -50%);
+        width: 72px; height: 72px; border: 1px solid rgba(255,255,255,0.65);
+        border-radius: 50%; background: rgba(20, 18, 18, 0.62); color: white;
+        font-size: 28px; cursor: pointer; backdrop-filter: blur(5px);
+        transition: opacity 0.2s, transform 0.2s, background 0.2s;
+      }
+      .video-center-play:hover { background: rgba(155, 200, 98, 0.82); transform: translate(-50%, -50%) scale(1.05); }
+      .video-player.is-playing .video-center-play { opacity: 0; pointer-events: none; }
+      .video-controls {
+        position: absolute; left: 0; right: 0; bottom: 0;
+        display: grid; grid-template-columns: auto auto 1fr auto auto; gap: 12px; align-items: center;
+        padding: 18px 20px 14px; color: white;
+        background: linear-gradient(transparent, rgba(12, 11, 11, 0.88));
+        opacity: 0; transition: opacity 0.2s ease;
+      }
+      .video-controls:hover,
+      .video-controls:focus-within { opacity: 1; }
+      .video-controls button {
+        border: 0; background: transparent; color: inherit; font: inherit;
+        cursor: pointer; padding: 4px; min-width: 30px;
+      }
+      .video-mute svg { display: block; width: 18px; height: 18px; }
+      .video-time { font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+      .video-progress { width: 100%; accent-color: var(--accent); cursor: pointer; }
+      .video-speed {
+        border: 1px solid rgba(255,255,255,0.45) !important; border-radius: 999px !important;
+        padding: 3px 9px !important; font-size: 12px !important; min-width: 48px !important;
+      }
+      .visual-slot {
+        position: relative; width: 100%; border: 1px dashed var(--line);
+        border-radius: 14px; background: var(--bg-soft);
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        color: var(--muted); text-align: center; gap: 6px; overflow: hidden;
+      }
+      .visual-slot.ratio-wide { aspect-ratio: 16 / 9; }
+      .visual-slot.ratio-tall { aspect-ratio: 3 / 4; }
+      .visual-slot .vs-label { font-size: 13px; letter-spacing: 0.04em; }
+      .visual-slot .vs-hint { font-size: 12px; color: rgba(141, 145, 138, 0.7); }
+      figcaption { font-size: 13px; color: var(--muted); margin-top: 12px; }
+
+      .media-grid { display: grid; gap: 18px 14px; margin-top: 28px; }
+      .media-grid.two-by-two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .media-grid.two-by-two img { cursor: zoom-in; }
+      .media-grid.five-by-two {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        row-gap: 14px;
+      }
+      .media-grid.three-up { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .visual-block { margin-top: 36px; }
+      .visual-block + .visual-block {
+        margin-top: 72px; padding-top: 36px; border-top: 1px solid var(--line-soft);
+      }
+      .visual-block .media-grid { margin-top: 0; }
+      .journey-block figcaption {
+        margin-top: 5px; font-size: 10px; line-height: 1.25; letter-spacing: -0.01em;
+      }
+      .poster-block {
+        margin-top: 48px !important; padding-top: 0 !important; border-top: 0 !important;
+      }
+      .poster-block figcaption { margin-top: 5px; }
+      .poster-viewer {
+        max-height: 430px; overflow: auto; border-radius: 10px;
+        background: var(--bg-soft); cursor: zoom-in; scrollbar-width: thin;
+      }
+      .poster-viewer img {
+        display: block; width: 100%; max-width: none; border-radius: 0 !important;
+        transition: width 0.25s ease;
+      }
+      .poster-viewer.is-zoomed { cursor: zoom-out; }
+      .poster-viewer.is-zoomed img { width: 175%; }
+      .section .body .source-caption {
+        margin-top: 12px; font-size: 13px; line-height: 1.5; color: var(--muted);
+      }
+      .image-lightbox {
+        position: fixed; inset: 0; z-index: 100; display: none;
+        align-items: center; justify-content: center; padding: 28px;
+        background: rgba(15, 14, 14, 0.94); cursor: zoom-out;
+      }
+      .image-lightbox.is-open { display: flex; }
+      .image-lightbox img {
+        width: auto; height: auto; max-width: 96vw; max-height: 94vh;
+        object-fit: contain; border-radius: 10px;
+      }
+      .media-card { min-width: 0; }
+      .media-card img {
+        height: auto; aspect-ratio: 16 / 9; border-radius: 10px; background: var(--bg-soft);
+      }
+      .media-grid.three-up .media-card img {
+        height: auto; aspect-ratio: auto; object-fit: contain; background: var(--bg-soft);
+      }
+
+      .pullquote {
+        font-family: var(--font-display); font-style: italic; font-weight: 400;
+        font-size: clamp(20px, 2.4vw, 28px); line-height: 1.4;
+        border-left: 2px solid var(--accent); padding-left: 22px; margin-top: 24px;
+      }
+
+      .special-thanks { font-size: clamp(16px, 1.4vw, 18px); color: var(--text); }
+
+      .pager { display: flex; justify-content: space-between; gap: 20px; padding: 44px 0 90px; border-top: 1px solid var(--line-soft); }
+      .pager a { font-size: 14px; color: var(--muted); transition: color 0.25s; }
+      .pager a:hover { color: var(--accent); }
+      .pager .lbl { display: block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; }
+
+      @media (max-width: 760px) {
+        .section-grid { grid-template-columns: 1fr; gap: 14px; }
+        .meta-strip { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+        .media-grid.five-by-two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        nav { gap: 18px; }
+      }
+      @media (max-width: 520px) {
+        .media-grid.two-by-two,
+        .media-grid.five-by-two,
+        .media-grid.three-up { grid-template-columns: 1fr; }
+        .video-controls { gap: 6px; padding-inline: 10px; }
+        .video-center-play { width: 58px; height: 58px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor-light" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="../index.html">Audrey&nbsp;<b>Ouyang</b></a>
+        <nav aria-label="Main navigation">
+          <a href="../index.html#work">Work</a>
+          <a href="../index.html#about">About</a>
+          <a href="../index.html#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- 1. HERO -->
+      <section class="hero">
+        <div class="wrap">
+          <a class="back-link" href="../index.html#work">&larr; Back to Work</a>
+          <p class="eyebrow">Discursive Design · Spatial Installation · Cultural Research</p>
+          <h1>DE-GREE: Identity Anxiety in China's AI Transition</h1>
+          <p class="hook">What if a degree feels like both shield and trap?</p>
+
+          <dl class="meta-strip">
+            <div><dt>Role</dt><dd>Designer / Researcher</dd></div>
+            <div><dt>Method</dt><dd>Soma Design / Material Semeotics</dd></div>
+            <div><dt>Year</dt><dd>Feb 2026 - Apr 2026</dd></div>
+            <div><dt>Venue</dt><dd>UNSW Term1 2026 DDES9017 Capstone Studio 2</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- 2. THE QUESTION -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">The Question</p>
+          <div class="body">
+            <h2>When the systems that recognise us start to fail, what is a person still worth?</h2>
+            <p>As AI reshapes what work is worth, a generation of highly educated young people in China’s content and creative industries is told a degree is everything — and nothing(Si, 2025). The credential that was supposed to guarantee a future now guarantees very little, yet letting go of it feels like losing the only proof of value you have.</p>
+            <p>DE-GREE sits with that contradiction. The question was not how to fix the anxiety, but how to make it legible — to let an audience feel the pressure of a collapsing evaluation system in the body, without explaining it to them first.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. RESEARCH & METHOD -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">Research &amp; method</p>
+          <div class="body">
+            <p>Rather than argue the anxiety, I translated it into a spatial language: the Chinese character “证” (zhèng — certificate, proof, recognition) was deconstructed into a walk-through structure, so the symbol of the credential becomes the architecture a body has to negotiate.</p>
+            <p>The method was iterative and physical — testing structure, movement, material, and wearable interaction in turn. A lo-fi, real-size “first wall” was built from cardboard to verify that a body actually has to bend and fold to pass through, before scaling up to a full installation footprint of 5m × 3m × 2.2 m.</p>
+            <div class="media-grid two-by-two">
+              <figure class="media-card">
+                <img src="../assets/de-gree/final-visual-1.jpeg" alt="Real-size physical first wall prototype and body-scale testing" loading="lazy" />
+              </figure>
+              <figure class="media-card">
+                <img src="../assets/de-gree/final-visual-2.jpeg" alt="3D model views of the Big Red Flower wearable tension device" loading="lazy" />
+              </figure>
+              <figure class="media-card">
+                <img src="../assets/de-gree/final-visual-3.jpeg" alt="Photographic documentation of the Big Red Flower wearable tension device" loading="lazy" />
+              </figure>
+              <figure class="media-card">
+                <img src="../assets/de-gree/final-visual-4.jpeg" alt="Photographic documentation of the one-to-four physical scale model" loading="lazy" />
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. HERO VISUAL (full-bleed) -->
+      <section class="media-full reveal">
+        <div class="wrap">
+          <figure>
+            <div class="video-player">
+              <iframe class="youtube-embed" src="https://www.youtube-nocookie.com/embed/hiG5GwuP9vA?controls=1&amp;rel=0" title="DE-GREE introductory film" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <figcaption>An introductory film for DE-GREE</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 5. THE EXPERIENCE -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">The Experience</p>
+          <div class="body">
+            <p>Physical interaction is the carrier; critical reflection is the purpose. As a participant moves through the fragmented “证”, their posture, balance, and movement are shaped by resistance, restriction, and instability — invisible psychological pressure made into something the body has to carry. A wearable “Big Red Flower” device — borrowing the Chinese symbol of childhood recognition (大红花) — turns that reward into a pulling mechanism of tension and pressure worn on the body.</p>
+
+            <div class="visual-block journey-block">
+              <div class="media-grid five-by-two">
+                <figure class="media-card"><img src="../assets/de-gree/1.png" alt="Journey step 1: approaching the first wall" loading="lazy" /><figcaption>1. The participant stands before the first wall, ready to enter the DE-GREE experience.</figcaption></figure>
+                <figure class="media-card"><img src="../assets/de-gree/2.png" alt="Journey step 2: bending through the first wall" loading="lazy" /><figcaption>2. He follows the wall outline: turns sideways, lowers his head, lifts his feet, and keeps both arms level.</figcaption></figure>
+                <figure class="media-card"><img src="../assets/de-gree/3.png" alt="Journey step 3: entering the installation" loading="lazy" /><figcaption>3. After passing the first wall, he notices the “big red flower” wearable hanging before the second wall.</figcaption></figure>
+                <figure class="media-card"><img src="../assets/de-gree/4.png" alt="Journey step 4: noticing the Big Red Flower mechanism" loading="lazy" /><figcaption>4. He looks closely at the suspended red flower, recalling the childhood belief that “only good children receive big red flowers.”</figcaption></figure>
+                <figure class="media-card"><img src="../assets/de-gree/5.png" alt="Journey step 5: confronting the Big Red Flower mechanism" loading="lazy" /><figcaption>5. He attaches the red flower to his left ankle.</figcaption></figure>
+                <figure class="media-card"><img src="../assets/de-gree/6.png" alt="Journey step 6: reaching through the structure" loading="lazy" /><figcaption>6. Following the second wall’s outline, he sits with legs forward, arms level, and head lowered.</figcaption></figure>
+                <figure class="media-card"><img src="../assets/de-gree/7.png" alt="Journey step 7: body held under tension" loading="lazy" /><figcaption>7. Following the third wall, he stands with arms extended, legs crossed, and left foot lifted. Pressure begins on his left hand as well.</figcaption></figure>
+                <figure class="media-card"><img src="../assets/de-gree/8.png" alt="Journey step 8: body compressed beneath the structure" loading="lazy" /><figcaption>8. Following the fourth wall, he lies down with arms and legs extended. All four limbs now feel elastic pressure.</figcaption></figure>
+                <figure class="media-card"><img src="../assets/de-gree/9.png" alt="Journey step 9: body released into the final space" loading="lazy" /><figcaption>9. At the end point, he looks back through the openings and sees a red flower on each wall. The pressure reaches its maximum.</figcaption></figure>
+                <figure class="media-card"><img src="../assets/de-gree/10.png" alt="Journey step 10: looking up at the fragmented Chinese character" loading="lazy" /><figcaption>10. These accumulated symbols and pressures form a flattened Chinese character “证,” representing the reconstructed meaning of “certificate.”</figcaption></figure>
+              </div>
+            </div>
+
+            <div class="visual-block poster-block">
+              <div class="media-grid three-up">
+                <figure class="media-card">
+                  <div class="poster-viewer" tabindex="0" role="button" aria-label="Zoom project poster page 1">
+                    <img src="../assets/de-gree/poster-page-1.jpg" alt="DE-GREE project poster page 1" loading="lazy" />
+                  </div>
+                  <figcaption>Project poster — page 1 (Zoom out for more)</figcaption>
+                </figure>
+                <figure class="media-card">
+                  <div class="poster-viewer" tabindex="0" role="button" aria-label="Zoom project poster page 2">
+                    <img src="../assets/de-gree/poster-page-2.jpg" alt="DE-GREE project poster page 2" loading="lazy" />
+                  </div>
+                  <figcaption>Project poster — page 2 (Zoom out for more)</figcaption>
+                </figure>
+                <figure class="media-card">
+                  <div class="poster-viewer" tabindex="0" role="button" aria-label="Zoom project poster page 3">
+                    <img src="../assets/de-gree/poster-page-3.jpg" alt="DE-GREE project poster page 3" loading="lazy" />
+                  </div>
+                  <figcaption>Project poster — page 3 (Zoom out for more)</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. WHAT IT REVEALED -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">What it revealed</p>
+          <div class="body">
+            <p>The point was never relief. By making anxiety and pressure bodily perceptible, DE-GREE opens a space to question self-worth, human value, and irreplaceability at a moment when the criteria for recognition are being rapidly rewritten by AI. It connects directly to SDG 8 — decent work and dignity: as AI transforms the conditions of labour and evaluation, it asks how capability and human worth should be recognised, for individuals, organisations, and a shared future.</p>
+            <p>The strongest proof was watching people resist it — bracing against the tension, choosing how far to bend — and then keep questioning afterwards. The installation doesn’t hand over an answer; it creates the conditions for confronting the futures that are being forced on us.</p>
+            <blockquote class="pullquote">DE-GREE does not propose a solution to anxiety; it creates a condition for confronting it.</blockquote>
+            <p class="source-caption">Si, H. (2025). <em>Higher education evolution in China: A systematic review of the internationalisation of higher education in China.</em> Higher Education Quarterly, 80(1). https://doi.org/10.1111/hequ.70088.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. SPECIAL THANKS -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">Special Thanks</p>
+          <div class="body">
+            <p class="special-thanks">Dr. Michael Garbutt and Catherine Sarah Young PhD, Faculty of Art, Design and Architecture, UNSW Sydney</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PREV / NEXT -->
+      <nav class="pager" aria-label="Project navigation">
+        <div class="wrap" style="display:flex; justify-content:space-between; width:min(92%,var(--max));">
+          <a href="neorality.html"><span class="lbl">Previous</span><span class="ph">Neorality</span></a>
+          <a href="bravod.html" style="text-align:right;"><span class="lbl">Next</span><span class="ph">Bravod</span></a>
+        </div>
+      </nav>
+    </main>
+
+    <div class="image-lightbox" aria-hidden="true">
+      <img src="" alt="" />
+    </div>
+
+    <script>
+      const light = document.querySelector(".cursor-light");
+      window.addEventListener("pointermove", (e) => {
+        light.style.opacity = "1";
+        light.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      });
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } }),
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+      const lightbox = document.querySelector(".image-lightbox");
+      const lightboxImage = lightbox.querySelector("img");
+      document.querySelectorAll(".media-grid.two-by-two img").forEach((image) => {
+        image.addEventListener("click", () => {
+          lightboxImage.src = image.src;
+          lightboxImage.alt = image.alt;
+          lightbox.classList.add("is-open");
+          lightbox.setAttribute("aria-hidden", "false");
+        });
+      });
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("is-open");
+        lightbox.setAttribute("aria-hidden", "true");
+        lightboxImage.src = "";
+      });
+
+      document.querySelectorAll(".poster-viewer").forEach((viewer) => {
+        const togglePosterZoom = () => viewer.classList.toggle("is-zoomed");
+        viewer.addEventListener("click", togglePosterZoom);
+        viewer.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            togglePosterZoom();
+          }
+        });
+      });
+    </script>
+    <script src="../project-embed.js?project=7&amp;v=20260614c"></script>
+  </body>
+</html>

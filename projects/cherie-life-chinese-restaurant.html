@@ -1,0 +1,328 @@
+<!doctype html>
+<!--
+  SKELETON A — BRAND / PRODUCTION CASE
+  内部规划（不上页面，仅供下笔时对齐方向）:
+    叙事目的: ____
+    证明能力 / Proves: 主 ____ · 副 ____
+  填写说明:
+    - 带 class="ph" 的方括号文字是占位，填完后删掉文字与 class 即可。
+    - .visual-slot 是放图/视频的槽位，按其中注释替换成 <img> 或 <video>。
+    - 这是独立可预览文件；并入正式站点时，把 <style> 内容移进 styles.css 并对齐你的设计变量。
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Project detail — brand / production case." />
+    <title>Audrey Ouyang | Chinese Restaurant S5 × Cherie Life</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #242020;
+        --bg-soft: #2c2825;
+        --text: #dfdfdf;
+        --muted: #938d89;
+        --line: rgba(223, 223, 223, 0.14);
+        --line-soft: rgba(223, 223, 223, 0.07);
+        --accent: #9bc862;
+        --font-display: "Optima", "Optima nova", "URW Classico", Candara, "Gill Sans", "Gill Sans MT", "Segoe UI", sans-serif;
+        --font-body: "Manrope", system-ui, sans-serif;
+        --max: 1180px;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-body);
+        font-weight: 400;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      a { color: inherit; text-decoration: none; }
+      img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+      .cursor-light {
+        position: fixed; top: 0; left: 0; width: 520px; height: 520px;
+        margin: -260px 0 0 -260px; pointer-events: none; z-index: 0;
+        background: radial-gradient(circle, rgba(155, 200, 98, 0.12), transparent 60%);
+        transition: opacity 0.4s ease; opacity: 0;
+      }
+
+      .wrap { width: min(92%, var(--max)); margin: 0 auto; }
+
+      .site-header {
+        position: sticky; top: 0; z-index: 10;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 22px 0; backdrop-filter: blur(8px);
+        background: linear-gradient(var(--bg), rgba(11, 14, 13, 0.4));
+        border-bottom: 1px solid var(--line-soft);
+      }
+      .site-header .wrap { display: flex; align-items: center; justify-content: space-between; }
+      .brand { font-family: var(--font-display); font-size: 19px; letter-spacing: 0.01em; }
+      .brand b { color: var(--accent); font-weight: 500; }
+      nav { display: flex; gap: 28px; font-size: 14px; }
+      nav a { color: var(--muted); transition: color 0.25s; }
+      nav a:hover { color: var(--text); }
+
+      .eyebrow {
+        font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+        color: var(--accent); font-weight: 500;
+      }
+      .ph { color: var(--muted); border-bottom: 1px dotted var(--line); }
+
+      /* reveal */
+      .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+      @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+      /* HERO */
+      .hero { position: relative; padding: 80px 0 56px; }
+      .hero::before {
+        content: ""; position: absolute; top: -120px; left: 50%; width: 760px; height: 520px;
+        transform: translateX(-50%); z-index: -1;
+        background: radial-gradient(ellipse at center, rgba(155, 200, 98, 0.14), transparent 65%);
+        filter: blur(20px);
+      }
+      .back-link { font-size: 13px; color: var(--muted); display: inline-flex; gap: 8px; margin-bottom: 40px; }
+      .back-link:hover { color: var(--text); }
+      .hero h1 {
+        font-family: var(--font-display); font-weight: 500;
+        font-size: clamp(40px, 7vw, 84px); line-height: 1.05; letter-spacing: -0.005em;
+        margin: 14px 0 0; max-width: 100%; color: var(--accent);
+      }
+      .hook {
+        font-family: var(--font-display); font-weight: 400; font-style: italic;
+        font-size: clamp(20px, 2.6vw, 30px); line-height: 1.35; color: var(--text);
+        max-width: 100%; margin: 28px 0 0;
+      }
+      .meta-strip {
+        display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px 40px;
+        margin-top: 52px; padding-top: 26px; border-top: 1px solid var(--line);
+      }
+      .meta-strip dt { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+      .meta-strip dd { font-size: 15px; }
+
+      /* generic editorial section: label left, body right */
+      .section { padding: 60px 0; border-top: 1px solid var(--line-soft); }
+      .section-grid { display: grid; grid-template-columns: minmax(0, 210px) 1fr; gap: 40px; }
+      .section h2 {
+        font-family: var(--font-display); font-weight: 500; font-size: clamp(24px, 3vw, 34px);
+        line-height: 1.18; letter-spacing: -0.005em; margin-bottom: 18px; color: var(--accent);
+      }
+      .section .body p { font-size: clamp(16px, 1.4vw, 18px); color: var(--text); max-width: 100%; }
+      .section .body p + p { margin-top: 16px; }
+
+      /* hero visual full-bleed */
+      .media-full { padding: 8px 0 0; }
+      .visual-slot {
+        position: relative; width: 100%; border: 1px dashed var(--line);
+        border-radius: 14px; background: var(--bg-soft);
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        color: var(--muted); text-align: center; gap: 6px; overflow: hidden;
+      }
+      .visual-slot.ratio-wide { aspect-ratio: 1623 / 1080; }
+      .visual-slot.ratio-tall { aspect-ratio: 3 / 4; }
+      .visual-slot .vs-label { font-size: 13px; letter-spacing: 0.04em; }
+      .visual-slot .vs-hint { font-size: 12px; color: var(--line); color: rgba(141, 145, 138, 0.7); }
+      .visual-slot.has-media { border-style: solid; border-color: var(--line-soft); background: transparent; }
+      figcaption { font-size: 13px; color: var(--muted); margin-top: 12px; }
+
+      /* supporting gallery */
+      .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 28px; }
+      .gallery figure { min-width: 0; }
+      .gallery figcaption { line-height: 1.45; }
+      .gallery .scroll-image-slot {
+        display: block;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-width: thin;
+      }
+      .gallery .scroll-image {
+        width: auto;
+        max-width: none;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      /* impact stat band */
+      .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 28px; }
+      .stat { padding: 26px 22px; background: var(--bg-soft); border: 1px solid var(--line-soft); border-radius: 14px; }
+      .stat .num { font-family: var(--font-display); font-weight: 400; font-size: clamp(30px, 4vw, 46px); color: var(--accent); line-height: 1; }
+      .stat .lbl { font-size: 13px; color: var(--muted); margin-top: 12px; }
+      .pullquote {
+        font-family: var(--font-display); font-style: italic; font-weight: 400;
+        font-size: clamp(20px, 2.25vw, 26px); line-height: 1.35; max-width: 100%;
+        border-left: 2px solid var(--accent); padding-left: 22px;
+      }
+
+      /* credits + tags */
+      .credits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+      .credits-grid.credits-single { grid-template-columns: 1fr; }
+      .credits-grid dt { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+      .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+      .tags span { font-size: 12px; color: var(--text); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; }
+
+      /* prev / next */
+      .pager { display: flex; justify-content: space-between; gap: 20px; padding: 44px 0 90px; border-top: 1px solid var(--line-soft); }
+      .pager a { font-size: 14px; color: var(--muted); transition: color 0.25s; }
+      .pager a:hover { color: var(--accent); }
+      .pager .lbl { display: block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; }
+
+      @media (max-width: 760px) {
+        .section-grid { grid-template-columns: 1fr; gap: 14px; }
+        .meta-strip { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+        .stats, .gallery, .credits-grid { grid-template-columns: 1fr; }
+        nav { gap: 18px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor-light" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="../index.html">Audrey&nbsp;<b>Ouyang</b></a>
+        <nav aria-label="Main navigation">
+          <a href="../index.html#work">Work</a>
+          <a href="../index.html#about">About</a>
+          <a href="../index.html#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- 1. HERO -->
+      <section class="hero">
+        <div class="wrap">
+          <a class="back-link" href="../index.html#work">&larr; Back to Work</a>
+          <p class="eyebrow">Brand Integration · Variety TV · Livestream Commerce</p>
+          <h1>Chinese Restaurant S5 × Cherie Life</h1>
+          <p class="hook">A first prime-time variety, celebrity, and livestream commerce — wired into one funnel.</p>
+
+          <dl class="meta-strip">
+            <div><dt>Role</dt><dd>Brand Integration Specialist</dd></div>
+            <div><dt>Year</dt><dd>2021</dd></div>
+            <div><dt>Client / Platform</dt><dd>Cherie Life(雪梨生活)/Hunan TV &amp; Mango TV &amp; Taobao E-commerce</dd></div>
+            <div><dt>Scale</dt><dd>National prime-time · ratings champion</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- 2. THE BRIEF -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">The Brief</p>
+          <div class="body">
+            <h2>Make sponsorship sell — not just sit in the corner.</h2>
+            <p>Variety sponsorship usually stops at logo placement: a sticker in the corner of frame, a scripted shout-out, a banner nobody remembers. Cherie Life — a lifestyle homeware label — didn’t need more awareness. It needed the show to actually drive purchase. The brief was to turn prime-time entertainment into demand, without breaking the warmth that made people tune in.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. THE MOVE -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">The Move</p>
+          <div class="body">
+            <h2>Write the products into the story.</h2>
+            <p>We built a bridge that didn't exist. Instead of cutaway ads, Cherie Life's pieces became the cast's everyday objects — the aprons they cooked in, the bowls they ate from, the cushions and parasols around the courtyard. Each product entered like a character, so the audience absorbed it as part of the scene rather than an interruption. We borrowed the show's IP and its cast's fame to open an audience channel straight into Cherie Life's Taobao livestream. A seamless brand-and-IP integration sparked the desire to buy; the livestream let them buy it.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. HERO VISUAL (full-bleed) -->
+      <section class="media-full reveal">
+        <div class="wrap">
+          <figure>
+            <!-- 替换为视频:  <video src="../assets/work/____.mp4" poster="../assets/work/____.jpg" muted loop playsinline autoplay></video>
+                 或图片:    <img src="../assets/work/____.jpg" alt="____" />  -->
+            <div class="visual-slot ratio-wide has-media">
+              <img src="../files/chinese-restaurant-poster.jpg" alt="Chinese Restaurant S5 official promotional artwork featuring Cherie Life branded props" />
+            </div>
+            <figcaption>Branded Props Featured in Official Promotional Poster</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 5. HOW IT WORKED -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">How it worked</p>
+          <div class="body">
+            <p>I owned the brand-integration plan and ran it on the ground — mapping where each product could live inside the run-of-show, art-directing the custom tableware so it read as the cast’s own (the dinner bowls were ours, restyled for each location stop), and wiring the touchpoint chain that carried attention from broadcast → social hot-search → Cherie livestream on Taobao. Placement, prop styling, on-screen cueing and the livestream handoff were planned as one funnel — not three separate buys.</p>
+
+            <div class="gallery">
+              <!-- 每个 slot 替换为 <img src="../assets/work/____.jpg" alt="____" /> -->
+              <figure>
+                <div class="visual-slot ratio-tall has-media scroll-image-slot"><img class="scroll-image" src="../files/cherie-design.jpg" alt="Cherie Life design draft for Chinese Restaurant product integration" /></div>
+                <figcaption>Concept Illustration for Brand Integration from Cherie (Swipe right for more)</figcaption>
+              </figure>
+              <figure>
+                <div class="visual-slot ratio-tall has-media"><img src="../files/cherie-onsite.jpeg" alt="On-site Cherie Life product display for Chinese Restaurant" /></div>
+                <figcaption>Summer Quilt Styling on Set</figcaption>
+              </figure>
+              <figure>
+                <div class="visual-slot ratio-tall has-media"><img src="../files/cherie-ningjing.jpg" alt="Photo with Ning Jing during the Chinese Restaurant production" /></div>
+                <figcaption>On-Site Photo with Chinese Female Celebrity Ning Jing</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. IMPACT -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">Impact</p>
+          <div class="body">
+            <div class="stats">
+              <div class="stat"><div class="num">#1</div><div class="lbl">CSM national ratings — first place, week on week</div></div>
+              <div class="stat"><div class="num">19.8B</div><div class="lbl">Total reads across the show’s hot-search topics</div></div>
+              <div class="stat"><div class="num">97.2%</div><div class="lbl">Weibo Variety Chart — real-time heat, TOP 1</div></div>
+            </div>
+            <blockquote class="pullquote">A first of its kind: prime-time variety, celebrity, and livestream commerce wired into a single funnel — proof that an integration can sell, not just sponsor.</blockquote>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. CREDITS -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">Credit</p>
+          <div class="body">
+            <p>Hunan TV Program Production Center - Wang Tian Studio</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PREV / NEXT -->
+      <nav class="pager" aria-label="Project navigation">
+        <div class="wrap" style="display:flex; justify-content:space-between; width:min(92%,var(--max));">
+          <a href="sisters-who-make-waves.html"><span class="lbl">Previous</span><span class="ph">Sisters Who Make Waves · Season1</span></a>
+          <a href="dforward-gala.html" style="text-align:right;"><span class="lbl">Next</span><span class="ph">D.Forward 4th Anniversary Gala</span></a>
+        </div>
+      </nav>
+    </main>
+
+    <script>
+      const light = document.querySelector(".cursor-light");
+      window.addEventListener("pointermove", (e) => {
+        light.style.opacity = "1";
+        light.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      });
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } }),
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    </script>
+    <script src="../project-embed.js?project=3&amp;v=20260614b"></script>
+  </body>
+</html>

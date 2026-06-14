@@ -1,0 +1,387 @@
+<!doctype html>
+<!--
+  SKELETON A — BRAND / PRODUCTION CASE
+  内部规划（不上页面，仅供下笔时对齐方向）:
+    叙事目的: ____
+    证明能力 / Proves: 主 ____ · 副 ____
+  填写说明:
+    - 带 class="ph" 的方括号文字是占位，填完后删掉文字与 class 即可。
+    - .visual-slot 是放图/视频的槽位，按其中注释替换成 <img> 或 <video>。
+    - 这是独立可预览文件；并入正式站点时，把 <style> 内容移进 styles.css 并对齐你的设计变量。
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Herborist x Yanxi Palace — content-led commerce case study." />
+    <title>Audrey Ouyang | Herborist x Yanxi Palace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #242020;
+        --bg-soft: #2c2825;
+        --text: #dfdfdf;
+        --muted: #938d89;
+        --line: rgba(223, 223, 223, 0.14);
+        --line-soft: rgba(223, 223, 223, 0.07);
+        --accent: #9bc862;
+        --font-display: "Optima", "Optima nova", "URW Classico", Candara, "Gill Sans", "Gill Sans MT", "Segoe UI", sans-serif;
+        --font-body: "Manrope", system-ui, sans-serif;
+        --max: 1180px;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-body);
+        font-weight: 400;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      a { color: inherit; text-decoration: none; }
+      img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+      .cursor-light {
+        position: fixed; top: 0; left: 0; width: 520px; height: 520px;
+        margin: -260px 0 0 -260px; pointer-events: none; z-index: 0;
+        background: radial-gradient(circle, rgba(155, 200, 98, 0.12), transparent 60%);
+        transition: opacity 0.4s ease; opacity: 0;
+      }
+
+      .wrap { width: min(92%, var(--max)); margin: 0 auto; }
+
+      .site-header {
+        position: sticky; top: 0; z-index: 10;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 22px 0; backdrop-filter: blur(8px);
+        background: linear-gradient(var(--bg), rgba(11, 14, 13, 0.4));
+        border-bottom: 1px solid var(--line-soft);
+      }
+      .site-header .wrap { display: flex; align-items: center; justify-content: space-between; }
+      .brand { font-family: var(--font-display); font-size: 19px; letter-spacing: 0.01em; }
+      .brand b { color: var(--accent); font-weight: 500; }
+      nav { display: flex; gap: 28px; font-size: 14px; }
+      nav a { color: var(--muted); transition: color 0.25s; }
+      nav a:hover { color: var(--text); }
+
+      .eyebrow {
+        font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+        color: var(--accent); font-weight: 500;
+      }
+      .ph { color: var(--muted); border-bottom: 1px dotted var(--line); }
+
+      /* reveal */
+      .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+      @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+      /* HERO */
+      .hero { position: relative; padding: 80px 0 56px; }
+      .hero::before {
+        content: ""; position: absolute; top: -120px; left: 50%; width: 760px; height: 520px;
+        transform: translateX(-50%); z-index: -1;
+        background: radial-gradient(ellipse at center, rgba(155, 200, 98, 0.14), transparent 65%);
+        filter: blur(20px);
+      }
+      .back-link { font-size: 13px; color: var(--muted); display: inline-flex; gap: 8px; margin-bottom: 40px; }
+      .back-link:hover { color: var(--text); }
+      .hero h1 {
+        font-family: var(--font-display); font-weight: 500;
+        font-size: clamp(40px, 7vw, 84px); line-height: 1.05; letter-spacing: -0.005em;
+        margin: 14px 0 0; max-width: 100%; color: var(--accent);
+      }
+      .hook {
+        font-family: var(--font-display); font-weight: 400; font-style: italic;
+        font-size: clamp(20px, 2.6vw, 30px); line-height: 1.35; color: var(--text);
+        max-width: 100%; margin: 28px 0 0;
+      }
+      .meta-strip {
+        display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px 40px;
+        margin-top: 52px; padding-top: 26px; border-top: 1px solid var(--line);
+      }
+      .meta-strip dt { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+      .meta-strip dd { font-size: 15px; }
+      .meta-strip dd a { font-style: italic; text-decoration: underline; text-underline-offset: 3px; }
+
+      /* generic editorial section: label left, body right */
+      .section { padding: 60px 0; border-top: 1px solid var(--line-soft); }
+      .section-grid { display: grid; grid-template-columns: minmax(0, 210px) 1fr; gap: 40px; }
+      .section h2 {
+        font-family: var(--font-display); font-weight: 500; font-size: clamp(24px, 3vw, 34px);
+        line-height: 1.18; letter-spacing: -0.005em; margin-bottom: 18px; color: var(--accent);
+      }
+      .section .body p { font-size: clamp(16px, 1.4vw, 18px); color: var(--text); max-width: 100%; }
+      .section .body p + p { margin-top: 16px; }
+
+      /* portrait video + story copy */
+      .feature-story { padding: 70px 0; border-top: 1px solid var(--line-soft); }
+      .feature-grid {
+        display: grid;
+        grid-template-columns: minmax(217px, 31.6667%) 1fr;
+        gap: 42px;
+        align-items: start;
+      }
+      .feature-grid figure { height: auto; }
+      .feature-grid .visual-slot { height: auto; }
+      .story-stack {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        gap: 22px;
+        height: calc(min(92vw, var(--max)) * 0.316667 * 1560 / 720);
+      }
+      .story-card {
+        border-top: 1px solid var(--line);
+        padding-top: 22px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .story-card h2 {
+        font-family: var(--font-display); font-weight: 500; font-size: clamp(24px, 3vw, 34px);
+        line-height: 1.18; letter-spacing: -0.005em; margin: 12px 0 18px; color: var(--accent);
+      }
+      .story-card p { font-size: clamp(15px, 1.2vw, 17px); color: var(--text); }
+
+      /* hero visual full-bleed */
+      .media-full { padding: 8px 0 0; }
+      .visual-slot {
+        position: relative; width: 100%; border: 1px dashed var(--line);
+        border-radius: 14px; background: var(--bg-soft);
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        color: var(--muted); text-align: center; gap: 6px; overflow: hidden;
+      }
+      .visual-slot.ratio-wide { aspect-ratio: 16 / 9; }
+      .visual-slot.ratio-portrait { aspect-ratio: 720 / 1560; }
+      .visual-slot.ratio-tall { aspect-ratio: 3 / 4; }
+      .youtube-embed { display: block; width: 100%; height: 100%; border: 0; }
+      .visual-slot .vs-label { font-size: 13px; letter-spacing: 0.04em; }
+      .visual-slot .vs-hint { font-size: 12px; color: var(--line); color: rgba(141, 145, 138, 0.7); }
+      .video-play-button {
+        position: absolute; top: 50%; left: 50%; z-index: 2;
+        width: 62px; height: 62px; transform: translate(-50%, -50%);
+        border: 1px solid rgba(255, 255, 255, 0.65); border-radius: 50%;
+        background: rgba(36, 32, 32, 0.72); color: #fff;
+        display: grid; place-items: center; font-size: 22px; cursor: pointer;
+      }
+      .video-play-button[hidden] { display: none; }
+      .video-controls {
+        position: absolute; left: 10px; right: 10px; bottom: 10px; z-index: 3;
+        display: flex; align-items: center; gap: 8px; padding: 8px 9px;
+        background: rgba(20, 18, 18, 0.76); border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 6px; opacity: 0; pointer-events: none;
+        transition: opacity 0.18s ease;
+      }
+      .visual-slot.controls-visible .video-controls { opacity: 1; pointer-events: auto; }
+      .video-controls button {
+        border: 0; background: transparent; color: #fff; cursor: pointer;
+        font-family: var(--font-body); font-size: 12px; line-height: 1;
+        min-width: 24px; height: 24px; padding: 0 4px;
+      }
+      .video-controls input[type="range"] {
+        min-width: 0; accent-color: var(--accent); cursor: pointer;
+      }
+      .video-progress { flex: 1; }
+      .video-mute { margin-left: 4px; }
+      .video-mute svg { display: block; width: 16px; height: 16px; }
+      .video-speed { border: 1px solid rgba(255, 255, 255, 0.28) !important; border-radius: 4px; }
+      figcaption {
+        font-size: 13px; color: var(--muted); margin-top: 12px;
+        letter-spacing: 0.08em; text-transform: uppercase;
+      }
+      .feature-grid figcaption { font-size: 10px; }
+
+      /* supporting gallery */
+      .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 28px; }
+      .gallery-item { min-width: 0; }
+      .gallery iframe { display: block; width: 100%; height: 100%; border: 0; background: #fff; }
+      .gallery-caption { margin-top: 12px; }
+
+      /* impact stat band */
+      .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 28px; }
+      .stat { padding: 26px 22px; background: var(--bg-soft); border: 1px solid var(--line-soft); border-radius: 14px; }
+      .stat .num { font-family: var(--font-display); font-weight: 400; font-size: clamp(30px, 4vw, 46px); color: var(--accent); line-height: 1; }
+      .stat .lbl { font-size: 13px; color: var(--muted); margin-top: 12px; }
+      .pullquote {
+        font-family: var(--font-display); font-style: italic; font-weight: 400;
+        font-size: clamp(20px, 2.4vw, 28px); line-height: 1.4; max-width: 100%;
+        border-left: 2px solid var(--accent); padding-left: 22px;
+      }
+      .analytics-figure { margin: 24px 0 28px; }
+      .analytics-figure .visual-slot { aspect-ratio: 3813 / 1276; border-radius: 10px; }
+      .analytics-figure img { object-fit: contain; background: #fff; }
+
+      /* credits + tags */
+      .credits-grid { display: grid; grid-template-columns: 1fr; gap: 28px; max-width: 100%; }
+      .credits-grid dt { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+      .credits-grid dd { white-space: nowrap; }
+      .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+      .tags span { font-size: 12px; color: var(--text); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; }
+
+      /* prev / next */
+      .pager { display: flex; justify-content: space-between; gap: 20px; padding: 44px 0 90px; border-top: 1px solid var(--line-soft); }
+      .pager a { font-size: 14px; color: var(--muted); transition: color 0.25s; }
+      .pager a:hover { color: var(--accent); }
+      .pager .lbl { display: block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; }
+
+      @media (max-width: 760px) {
+        .section-grid, .feature-grid { grid-template-columns: 1fr; gap: 20px; }
+        .story-stack { grid-template-rows: auto; height: auto; }
+        .hero h1, .credits-grid dd { white-space: normal; }
+        .meta-strip { grid-template-columns: 1fr; gap: 22px; }
+        .stats, .gallery, .credits-grid { grid-template-columns: 1fr; }
+        nav { gap: 18px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor-light" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="../index.html">Audrey&nbsp;<b>Ouyang</b></a>
+        <nav aria-label="Main navigation">
+          <a href="../index.html#work">Work</a>
+          <a href="../index.html#about">About</a>
+          <a href="../index.html#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- 1. HERO -->
+      <section class="hero">
+        <div class="wrap">
+          <a class="back-link" href="../index.html#work">&larr; Back to Work</a>
+          <p class="eyebrow">Content-Led Commerce · Brand Storytelling · Live Streaming</p>
+          <h1>Herborist × Yanxi Palace</h1>
+          <p class="hook">A heritage skincare brand, restaged as palace drama — and turned into a livestream the industry kept referencing.</p>
+
+          <dl class="meta-strip">
+            <div><dt>Role</dt><dd>Creative Strategist</dd></div>
+            <div><dt>Year</dt><dd>2021</dd></div>
+            <div><dt>Client / Platform</dt><dd>Shanghai Jahwa / Douyin Livestream</dd></div>
+            <div><dt>Scale</dt><dd>Double-11 flagship — 50K+ concurrent viewers by day 5, cited in <a href="https://pdf.dfcfw.com/pdf/H3_AP202304071585212082_1.pdf">Shanghai Jahwa equity research</a></dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- 2. VIDEO + STRATEGY -->
+      <section class="feature-story reveal">
+        <div class="wrap feature-grid">
+          <figure>
+            <div class="visual-slot ratio-portrait">
+              <iframe class="youtube-embed" src="https://www.youtube-nocookie.com/embed/kkt2jbeyaFU?controls=1&amp;rel=0" title="Herborist Yanxi Palace livestream" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <figcaption>Live set — Yanxi Palace livestream</figcaption>
+          </figure>
+          <div class="story-stack">
+            <article class="story-card">
+              <p class="eyebrow">The Brief</p>
+              <h2>Make a legacy brand appointment viewing — not a discount event.</h2>
+              <p>Herborist carried 22 years of genuine heritage in traditional Chinese herbal skincare, but to a younger audience it still read as “your mother’s skincare.” The task wasn’t another flash-sale livestream that competes on price — it was to make a legacy house feel like something worth tuning in for.</p>
+            </article>
+            <article class="story-card">
+              <p class="eyebrow">The Move</p>
+              <h2>Borrow the grammar of palace drama.</h2>
+              <p>Instead of hosts reciting specs, the livestream became a scene — set, costume, and narrative beats lifted from the Yanxi Palace world, where each product entered like a character. Commerce was choreographed as story, so audiences stayed for the drama and converted inside it.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. HOW IT WORKED -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">How it worked</p>
+          <div class="body">
+            <p>I owned concept and visual direction that kept the drama on-brand. The format closed the gap between “content” and “sell”: a costumed two-hander in a full palace set, products staged on the table like props, and a run-of-show that timed each reveal to a story beat — all wrapped in on-screen trust cues (Official store · Nationwide free shipping · Allergy returns) so entertainment never undercut credibility.</p>
+
+            <div class="gallery">
+              <figure class="gallery-item">
+                <div class="visual-slot ratio-tall">
+                  <iframe src="../files/herborist/content-strategy.pdf#toolbar=0&navpanes=0&scrollbar=1&view=FitH" title="Palace Intrigue Account Content Strategy"></iframe>
+                </div>
+                <figcaption class="gallery-caption">Content strategy deck（zoom out to see more）</figcaption>
+              </figure>
+              <figure class="gallery-item">
+                <div class="visual-slot ratio-tall">
+                  <img src="../files/herborist/campaign-cover.png" alt="Herborist Yanxi Palace campaign cover" />
+                </div>
+                <figcaption class="gallery-caption">Campaign cover</figcaption>
+              </figure>
+              <figure class="gallery-item">
+                <div class="visual-slot ratio-tall">
+                  <img src="../files/herborist/sets.png" alt="Yanxi Palace livestream interface with cast" />
+                </div>
+                <figcaption class="gallery-caption">Livestream interface</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. IMPACT -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">Impact</p>
+          <div class="body">
+            <div class="stats">
+              <div class="stat"><div class="num">¥1.87M</div><div class="lbl">Livestream GMV across the 15-day flight</div></div>
+              <div class="stat"><div class="num">+214K</div><div class="lbl">New followers — 59% earned live (126K)</div></div>
+              <div class="stat"><div class="num">150K+</div><div class="lbl">Peak viewers in a single session</div></div>
+            </div>
+            <figure class="analytics-figure">
+              <div class="visual-slot">
+                <img src="../files/herborist/analytics.png" alt="Account analytics for Herborist Yanxi Palace" />
+              </div>
+              <figcaption>Account analytics · 佰草集延禧宫正传 · 31 Oct – 14 Nov 2021</figcaption>
+            </figure>
+            <blockquote class="pullquote">Proof that heritage doesn’t need discounting — it needs a story. The run became a reference point for content-led livestream commerce in beauty.</blockquote>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. CREDITS -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">Credit</p>
+          <div class="body">
+            <dl class="credits-grid">
+              <div><dd>Hunan TV Commercial Operations Centre — E-commerce Division · Star Continent Network Technology Co., Ltd.</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- PREV / NEXT -->
+      <nav class="pager" aria-label="Project navigation">
+        <div class="wrap" style="display:flex; justify-content:space-between; width:min(92%,var(--max));">
+          <a href="bravod.html"><span class="lbl">Previous</span><span class="ph">Bravod</span></a>
+          <a href="sisters-who-make-waves.html" style="text-align:right;"><span class="lbl">Next</span><span class="ph">Sisters Who Make Waves · Season1</span></a>
+        </div>
+      </nav>
+    </main>
+
+    <script>
+      const light = document.querySelector(".cursor-light");
+      window.addEventListener("pointermove", (e) => {
+        light.style.opacity = "1";
+        light.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      });
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } }),
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+    </script>
+    <script src="../project-embed.js?project=1&amp;v=20260614b"></script>
+  </body>
+</html>

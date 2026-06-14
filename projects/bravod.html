@@ -1,0 +1,391 @@
+<!doctype html>
+<!--
+  SKELETON B — EXPERIENCE / RESEARCH CASE
+  内部规划（不上页面，仅供下笔时对齐方向）:
+    叙事目的: ____
+    证明能力 / Proves: 主 ____ · 副 ____
+  填写说明:
+    - 带 class="ph" 的方括号文字是占位，填完后删掉文字与 class 即可。
+    - .visual-slot 是放图/视频的槽位，按其中注释替换成 <img> 或 <video>。
+    - 走查序列可放 2–4 张：删/加 .gallery 里的 slot 即可。
+    - 这是独立可预览文件；并入正式站点时，把 <style> 内容移进 styles.css 并对齐你的设计变量。
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Project detail — experience / research case." />
+    <title>Audrey Ouyang | Bravod</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #242020;
+        --bg-soft: #2c2825;
+        --text: #dfdfdf;
+        --muted: #938d89;
+        --line: rgba(223, 223, 223, 0.14);
+        --line-soft: rgba(223, 223, 223, 0.07);
+        --accent: #9bc862;
+        --font-display: "Optima", "Optima nova", "URW Classico", Candara, "Gill Sans", "Gill Sans MT", "Segoe UI", sans-serif;
+        --font-body: "Manrope", system-ui, sans-serif;
+        --max: 1180px;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-body);
+        font-weight: 400;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      a { color: inherit; text-decoration: none; }
+      img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+      .cursor-light {
+        position: fixed; top: 0; left: 0; width: 520px; height: 520px;
+        margin: -260px 0 0 -260px; pointer-events: none; z-index: 0;
+        background: radial-gradient(circle, rgba(155, 200, 98, 0.12), transparent 60%);
+        transition: opacity 0.4s ease; opacity: 0;
+      }
+
+      .wrap { width: min(92%, var(--max)); margin: 0 auto; }
+
+      .site-header {
+        position: sticky; top: 0; z-index: 10;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 22px 0; backdrop-filter: blur(8px);
+        background: linear-gradient(var(--bg), rgba(11, 14, 13, 0.4));
+        border-bottom: 1px solid var(--line-soft);
+      }
+      .site-header .wrap { display: flex; align-items: center; justify-content: space-between; }
+      .brand { font-family: var(--font-display); font-size: 19px; letter-spacing: 0.01em; }
+      .brand b { color: var(--accent); font-weight: 500; }
+      nav { display: flex; gap: 28px; font-size: 14px; }
+      nav a { color: var(--muted); transition: color 0.25s; }
+      nav a:hover { color: var(--text); }
+
+      .eyebrow {
+        font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+        color: var(--accent); font-weight: 500;
+      }
+      .ph { color: var(--muted); border-bottom: 1px dotted var(--line); }
+
+      .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+      @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+      /* HERO */
+      .hero { position: relative; padding: 80px 0 56px; }
+      .hero::before {
+        content: ""; position: absolute; top: -120px; left: 50%; width: 760px; height: 520px;
+        transform: translateX(-50%); z-index: -1;
+        background: radial-gradient(ellipse at center, rgba(155, 200, 98, 0.14), transparent 65%);
+        filter: blur(20px);
+      }
+      .back-link { font-size: 13px; color: var(--muted); display: inline-flex; gap: 8px; margin-bottom: 40px; }
+      .back-link:hover { color: var(--text); }
+      .hero h1 {
+        font-family: var(--font-display); font-weight: 500;
+        font-size: clamp(40px, 6.4vw, 76px); line-height: 1.05; letter-spacing: -0.005em;
+        margin: 14px 0 0; max-width: none; width: 100%; color: var(--accent);
+      }
+      /* hook = question, set larger and as the emotional lead */
+      .hook {
+        font-family: var(--font-display); font-weight: 400; font-style: italic;
+        font-size: clamp(22px, 3vw, 34px); line-height: 1.3; color: var(--text);
+        max-width: none; margin: 28px 0 0;
+      }
+      .meta-strip {
+        display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+        margin-top: 52px; padding-top: 26px; border-top: 1px solid var(--line);
+      }
+      .meta-strip dt { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+      .meta-strip dd { font-size: 15px; }
+
+      .section { padding: 60px 0; border-top: 1px solid var(--line-soft); }
+      .section-grid { display: grid; grid-template-columns: minmax(0, 210px) 1fr; gap: 40px; }
+      .section h2 {
+        font-family: var(--font-display); font-weight: 500; font-size: clamp(24px, 3vw, 34px);
+        line-height: 1.18; letter-spacing: -0.005em; margin-bottom: 18px; color: var(--accent);
+      }
+      .section .body p { font-size: clamp(16px, 1.4vw, 18px); color: var(--text); max-width: none; }
+      .section .body p + p { margin-top: 16px; }
+
+      .media-full { padding: 8px 0 0; }
+      .visual-slot {
+        position: relative; width: 100%; border: 1px dashed var(--line);
+        border-radius: 14px; background: var(--bg-soft);
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        color: var(--muted); text-align: center; gap: 6px; overflow: hidden;
+      }
+      .visual-slot.ratio-wide { aspect-ratio: 16 / 9; }
+      .visual-slot.ratio-tall { aspect-ratio: 3 / 4; }
+      .visual-slot .vs-label { font-size: 13px; letter-spacing: 0.04em; }
+      .visual-slot .vs-hint { font-size: 12px; color: rgba(141, 145, 138, 0.7); }
+      .video-player { position: relative; aspect-ratio: 16 / 9; background: #000; overflow: hidden; }
+      .youtube-embed { display: block; width: 100%; height: 100%; border: 0; }
+      .video-player video { object-fit: contain; }
+      .video-play {
+        position: absolute; inset: 50% auto auto 50%; transform: translate(-50%, -50%);
+        width: 70px; height: 70px; border: 1px solid rgba(255,255,255,.5); border-radius: 50%;
+        background: rgba(0,0,0,.42); color: #fff; cursor: pointer; backdrop-filter: blur(8px);
+        display: grid; place-items: center; transition: opacity .25s, transform .25s, background .25s;
+      }
+      .video-play:hover { background: rgba(0,0,0,.68); transform: translate(-50%, -50%) scale(1.04); }
+      .video-play svg { width: 25px; height: 25px; margin-left: 4px; fill: currentColor; }
+      .video-player.is-playing .video-play { opacity: 0; pointer-events: none; }
+      .video-controls {
+        display: flex; align-items: center; gap: 14px;
+        padding: 28px 18px 14px; color: #fff; opacity: 0; transform: translateY(8px);
+        background: linear-gradient(transparent, rgba(0,0,0,.78)); transition: opacity .22s, transform .22s;
+        pointer-events: none;
+      }
+      .video-controls-zone {
+        position: absolute; left: 0; right: 0; bottom: 0; min-height: 82px;
+        display: flex; flex-direction: column; justify-content: flex-end;
+      }
+      .video-controls-zone:hover .video-controls {
+        opacity: 1; transform: none; pointer-events: auto;
+      }
+      .video-control {
+        border: 0; background: transparent; color: inherit; cursor: pointer; display: grid; place-items: center;
+        min-width: 28px; height: 28px; font: 500 11px/1 var(--font-body); letter-spacing: .04em;
+      }
+      .video-control svg { width: 18px; height: 18px; fill: currentColor; }
+      .video-progress { flex: 1; accent-color: var(--accent); cursor: pointer; height: 3px; }
+      .video-caption { padding-top: 0; margin-top: 2px; }
+      figcaption { font-size: 13px; color: var(--muted); margin-top: 12px; }
+
+      /* walkthrough sequence — auto-fits 2 to 4 across */
+      .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-top: 28px; }
+
+      .pullquote {
+        font-family: var(--font-display); font-style: italic; font-weight: 400;
+        font-size: clamp(20px, 2.4vw, 28px); line-height: 1.4; max-width: none;
+        border-left: 2px solid var(--accent); padding-left: 22px; margin-top: 24px;
+      }
+      .section .body .reference-caption {
+        color: var(--muted); font-size: 12px; line-height: 1.55;
+        padding-left: 24px; margin-top: 10px;
+      }
+
+      .credits-grid { display: grid; grid-template-columns: 1fr; gap: 28px; }
+      .credits-grid dt { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+      .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+      .tags span { font-size: 12px; color: var(--text); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; }
+
+      /* Bravod system */
+      .system-section { background: var(--bg); }
+      .system-intro { margin-bottom: 30px; }
+      .system-features { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); }
+      .system-feature { padding: 28px; }
+      .system-feature + .system-feature { border-left: 1px solid var(--line); }
+      .system-feature h3 { font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 20px; }
+      .system-feature h3 span { color: var(--muted); margin-right: 8px; }
+      .system-feature figure { aspect-ratio: 4 / 3; display: flex; align-items: center; justify-content: center; }
+      .system-feature img { object-fit: contain; }
+      .action-flow { font-size: 17px; margin: 32px 0 6px; text-align: center; text-transform: capitalize; }
+      .system-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+      .system-step figure { aspect-ratio: 16 / 9; overflow: hidden; }
+      .system-step img { object-fit: cover; }
+      .system-step h4 { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 10px; }
+      .system-step h4 span { color: var(--accent); margin-right: 8px; }
+      .brand-panel { display: grid; grid-template-columns: 140px 1fr; gap: 28px; align-items: center; border: 1px solid var(--line); padding: 34px; margin-top: 32px; }
+      .brand-mark { background: transparent; padding: 0; width: 140px; height: 140px; overflow: hidden; }
+      .brand-mark img { object-fit: contain; width: 100%; height: 100%; }
+      .brand-copy { height: 140px; display: flex; flex-direction: column; justify-content: center; gap: 7px; }
+      .brand-copy h3 { font-size: 16px; margin: 0; }
+      .brand-copy h3 small { color: var(--muted); }
+      .brand-copy .tagline { font-style: italic; margin: 0; }
+      .brand-copy p, .brand-copy p + p { margin: 0; font-size: 14px; line-height: 1.45; }
+      .brand-copy p:nth-of-type(2) { font-size: 15px; }
+
+      .pager { display: flex; justify-content: space-between; gap: 20px; padding: 44px 0 90px; border-top: 1px solid var(--line-soft); }
+      .pager a { font-size: 14px; color: var(--muted); transition: color 0.25s; }
+      .pager a:hover { color: var(--accent); }
+      .pager .lbl { display: block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; }
+
+      @media (max-width: 760px) {
+        .section-grid { grid-template-columns: 1fr; gap: 14px; }
+        .meta-strip { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+        .credits-grid { grid-template-columns: 1fr; }
+        .system-features, .system-steps { grid-template-columns: 1fr; }
+        .system-feature + .system-feature { border-left: 0; border-top: 1px solid var(--line); }
+        .brand-panel { grid-template-columns: 1fr; }
+        .brand-mark { max-width: 140px; }
+        .brand-copy { height: auto; }
+        nav { gap: 18px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor-light" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="../index.html">Audrey&nbsp;<b>Ouyang</b></a>
+        <nav aria-label="Main navigation">
+          <a href="../index.html#work">Work</a>
+          <a href="../index.html#about">About</a>
+          <a href="../index.html#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- 1. HERO -->
+      <section class="hero">
+        <div class="wrap">
+          <a class="back-link" href="../index.html#work">&larr; Back to Work</a>
+          <p class="eyebrow">Industrial Design · Interaction Design · Brand Identity</p>
+          <h1>Bravod: Empowering Women in<br />Public Privacy</h1>
+          <p class="hook">Privacy you can act on — before you’re exposed.</p>
+
+          <dl class="meta-strip">
+            <div><dt>Role</dt><dd>Designer/Researcher</dd></div>
+            <div><dt>Context</dt><dd>Contextual Inquiry / Gender-Safety Research / Design Ethics Analysis</dd></div>
+            <div><dt>Year</dt><dd>May 2025 - Jul 2025</dd></div>
+            <div><dt>Venue</dt><dd>UNSW Term2 2025 DDES9013 Design in Context</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- 2. THE QUESTION -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">The Question</p>
+          <div class="body">
+            <h2>Hidden cameras in public toilets are a real, gendered threat — and the usual answer asks women to wait.</h2>
+            <p>How might we protect the privacy and safety of people using public restrooms while keeping those spaces accessible and convenient? Hidden-camera (“molka”) crimes fall overwhelmingly on women — in a single year South Korea logged roughly 6,800 illegal-filming cases, 90% of the victims women — yet most responses are reactive or institutional: tougher laws, more cameras watching the cameras, an after-the-fact report(Jun, 2021). The harder question is the human one. What if a woman could act, in the moment, herself — before the footage ever exists?</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. RESEARCH & METHOD -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">Research &amp; method</p>
+          <div class="body">
+            <p>Bravod grew out of a group study on women’s safety and design responses to sexual abuse — from the digital activism of #MeToo to South Africa’s physical Rape-aXe — which surfaced a pattern: protection tends to be either institutional and slow, or built around the victim’s body. I narrowed to one everyday, high-fear setting: the public restroom stall.</p>
+            <p>An interview study across five age groups, one woman from each, became the turning point. The majority said that if they were filmed they would silently endure it — treating being recorded as something shameful rather than something to fight — and only a minority would report it to staff or police. That reframed the brief: women didn’t need another system watching over them, they needed a small, symbolic shield in their own hands. The goal shifted from detection to agency.</p>
+            <p>Two earlier directions were abandoned for the same reason. A sensor-and-alarm “Safety Guardian” leaned on automation and wireless alerts — but it taught women to wait for rescue rather than defend themselves. Bulky stage lasers, borrowed from my live-production background, interfered with cameras but couldn’t fit a stall. The breakthrough came from research into handheld laser pointers, which under infrared can blind a camera’s sensor: small, usable, and entirely woman-initiated.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. HERO VISUAL (full-bleed) -->
+      <section class="media-full reveal">
+        <div class="wrap">
+          <figure>
+            <div class="video-player" data-video-player>
+              <iframe class="youtube-embed" src="https://www.youtube-nocookie.com/embed/I5WEZQTNFvs?controls=1&amp;rel=0" title="Bravod anti-voyeurism system film" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <figcaption class="video-caption">Bravod — a human-centered anti-voyeurism system, mounted on the cubicle partition</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 5. THE SYSTEM -->
+      <section class="section system-section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">The System</p>
+          <div class="body">
+            <p class="system-intro">Bravod is three things working as one — an industrial-design product, an interaction model, and a brand. Named from <em>Brave + Pod</em> (Chinese 防窥盒, “anti-peeping box”), the sealed module lives on the stall partition and turns a moment of exposure into a moment of action.</p>
+
+            <div class="system-features">
+              <article class="system-feature">
+                <h3><span>01</span>Auto-lift box</h3>
+                <figure><img src="../files/bravod/box.png" alt="Bravod auto-lift box" /></figure>
+              </article>
+              <article class="system-feature">
+                <h3><span>02</span>Laser pen</h3>
+                <figure><img src="../files/bravod/system-pen.png" alt="Bravod laser pen states" /></figure>
+              </article>
+              <article class="system-feature">
+                <h3><span>03</span>Silent alert</h3>
+                <figure><img src="../files/bravod/alert.png" alt="Bravod silent alert button" /></figure>
+              </article>
+            </div>
+
+            <p class="action-flow">The Action Flow</p>
+            <div class="system-steps">
+              <article class="system-step"><figure><img src="../files/bravod/storyboard/1.png" alt="Voyeurism begins" /></figure><h4><span>01</span>Voyeurism Begins</h4></article>
+              <article class="system-step"><figure><img src="../files/bravod/storyboard/2.png" alt="Intrusion detected" /></figure><h4><span>02</span>Intrusion Detected</h4></article>
+              <article class="system-step"><figure><img src="../files/bravod/storyboard/3.png" alt="Hear the tick" /></figure><h4><span>03</span>Hear the “Tick”</h4></article>
+              <article class="system-step"><figure><img src="../files/bravod/storyboard/4.png" alt="Open Bravod" /></figure><h4><span>04</span>Open</h4></article>
+              <article class="system-step"><figure><img src="../files/bravod/storyboard/5.PNG" alt="Take the laser pen" /></figure><h4><span>05</span>Take</h4></article>
+              <article class="system-step"><figure><img src="../files/bravod/storyboard/6.PNG" alt="Aim the laser pen" /></figure><h4><span>06</span>Aim</h4></article>
+              <article class="system-step"><figure><img src="../files/bravod/storyboard/7.png" alt="Return the pen and alert" /></figure><h4><span>07</span>Return &amp; Alert</h4></article>
+              <article class="system-step"><figure><img src="../files/bravod/storyboard/8.png" alt="Leave with confidence" /></figure><h4><span>08</span>Leave with Confidence</h4></article>
+            </div>
+
+            <div class="brand-panel">
+              <!-- Replace only this image to update the brand visual. -->
+              <figure class="brand-mark"><img src="../files/bravod/logo-transparent.png" alt="Bravod brand mark" /></figure>
+              <div class="brand-copy">
+                <h3>Bravod <small>· 防窥盒</small></h3>
+                <p class="tagline">“Brave in silence. Strong in action.”</p>
+                <p>The mark reads as a recording indicator struck through — a red circle of zero tolerance. The identity carries the same intent as the product: quiet, self-contained, and squarely on the side of the woman holding it.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. WHAT IT REVEALED -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">What it revealed</p>
+          <div class="body">
+            <p>The move from surveillance to self-defense is the whole argument. By putting a usable countermeasure in a woman’s hand, Bravod reframes safety from something granted by institutions into something a person can enact — quietly, immediately, on her own terms. As a project it’s an end-to-end proof: cultural research → product → interaction → brand, all aimed at a single un-met need, and a demonstration of range beyond live-production work.</p>
+            <blockquote class="pullquote">Bravod shifts safety from being watched to being empowered.</blockquote>
+            <p class="reference-caption">Jun, W. (2021). A Study on Characteristics Analysis and Countermeasures of Digital Sex Crimes in Korea. <em>International Journal of Environmental Research and Public Health</em>, 19(1), 12. https://doi.org/10.3390/ijerph19010012</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. CREDITS -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">Special Thanks</p>
+          <div class="body">
+            <dl class="credits-grid">
+              <div><dd>Mrs Chloe Cassidy &amp; Yulia Brazauskayte, PhD, Faculty of Art, Design and Architecture, UNSW Sydney</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- PREV / NEXT -->
+      <nav class="pager" aria-label="Project navigation">
+        <div class="wrap" style="display:flex; justify-content:space-between; width:min(92%,var(--max));">
+          <a href="de-gree.html"><span class="lbl">Previous</span><span class="ph">DE-GREE</span></a>
+          <a href="herborist.html" style="text-align:right;"><span class="lbl">Next</span><span class="ph">Herborist &amp; Yanxi Palace</span></a>
+        </div>
+      </nav>
+    </main>
+
+    <script>
+      const light = document.querySelector(".cursor-light");
+      window.addEventListener("pointermove", (e) => {
+        light.style.opacity = "1";
+        light.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      });
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } }),
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+    </script>
+    <script src="../project-embed.js?project=8&amp;v=20260614c"></script>
+  </body>
+</html>

@@ -1,0 +1,539 @@
+<!doctype html>
+<!--
+  SKELETON A — BRAND / PRODUCTION CASE
+  内部规划（不上页面，仅供下笔时对齐方向）:
+    叙事目的: ____
+    证明能力 / Proves: 主 ____ · 副 ____
+  填写说明:
+    - 带 class="ph" 的方括号文字是占位，填完后删掉文字与 class 即可。
+    - .visual-slot 是放图/视频的槽位，按其中注释替换成 <img> 或 <video>。
+    - 这是独立可预览文件；并入正式站点时，把 <style> 内容移进 styles.css 并对齐你的设计变量。
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="D. Forward 4th Anniversary Gala — creative direction and live production." />
+    <title>Audrey Ouyang | D. Forward 4th Anniversary Gala</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #242020;
+        --bg-soft: #2c2825;
+        --text: #dfdfdf;
+        --muted: #938d89;
+        --line: rgba(223, 223, 223, 0.14);
+        --line-soft: rgba(223, 223, 223, 0.07);
+        --accent: #9bc862;
+        --font-display: "Optima", "Optima nova", "URW Classico", Candara, "Gill Sans", "Gill Sans MT", "Segoe UI", sans-serif;
+        --font-body: "Manrope", system-ui, sans-serif;
+        --max: 1180px;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-body);
+        font-weight: 400;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      a { color: inherit; text-decoration: none; }
+      img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+      .cursor-light {
+        position: fixed; top: 0; left: 0; width: 520px; height: 520px;
+        margin: -260px 0 0 -260px; pointer-events: none; z-index: 0;
+        background: radial-gradient(circle, rgba(155, 200, 98, 0.12), transparent 60%);
+        transition: opacity 0.4s ease; opacity: 0;
+      }
+
+      .wrap { width: min(92%, var(--max)); margin: 0 auto; }
+
+      .site-header {
+        position: sticky; top: 0; z-index: 10;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 22px 0; backdrop-filter: blur(8px);
+        background: linear-gradient(var(--bg), rgba(11, 14, 13, 0.4));
+        border-bottom: 1px solid var(--line-soft);
+      }
+      .site-header .wrap { display: flex; align-items: center; justify-content: space-between; }
+      .brand { font-family: var(--font-display); font-size: 19px; letter-spacing: 0.01em; }
+      .brand b { color: var(--accent); font-weight: 500; }
+      nav { display: flex; gap: 28px; font-size: 14px; }
+      nav a { color: var(--muted); transition: color 0.25s; }
+      nav a:hover { color: var(--text); }
+
+      .eyebrow {
+        font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+        color: var(--accent); font-weight: 500;
+      }
+      .ph { color: var(--muted); border-bottom: 1px dotted var(--line); }
+
+      /* reveal */
+      .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+      @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+      /* HERO */
+      .hero { position: relative; padding: 80px 0 56px; }
+      .hero::before {
+        content: ""; position: absolute; top: -120px; left: 50%; width: 760px; height: 520px;
+        transform: translateX(-50%); z-index: -1;
+        background: radial-gradient(ellipse at center, rgba(155, 200, 98, 0.14), transparent 65%);
+        filter: blur(20px);
+      }
+      .back-link { font-size: 13px; color: var(--muted); display: inline-flex; gap: 8px; margin-bottom: 40px; }
+      .back-link:hover { color: var(--text); }
+      .hero h1 {
+        font-family: var(--font-display); font-weight: 500;
+        font-size: clamp(40px, 5.1vw, 66px); line-height: 1.05; letter-spacing: -0.005em;
+        margin: 14px 0 0; max-width: none; color: var(--accent);
+        white-space: nowrap;
+      }
+      .hook {
+        font-family: var(--font-display); font-weight: 400; font-style: italic;
+        font-size: clamp(20px, 2.6vw, 30px); line-height: 1.35; color: var(--text);
+        max-width: none; margin: 28px 0 0;
+      }
+      .meta-strip {
+        display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px 52px;
+        margin-top: 52px; padding-top: 26px; border-top: 1px solid var(--line);
+      }
+      .meta-strip dt { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+      .meta-strip dd { font-size: 15px; }
+
+      /* generic editorial section: label left, body right */
+      .section { padding: 60px 0; border-top: 1px solid var(--line-soft); }
+      .section-grid { display: grid; grid-template-columns: minmax(0, 210px) 1fr; gap: 40px; }
+      .section h2 {
+        font-family: var(--font-display); font-weight: 500; font-size: clamp(24px, 3vw, 34px);
+        line-height: 1.18; letter-spacing: -0.005em; margin-bottom: 18px; color: var(--accent);
+      }
+      .section .body p { font-size: clamp(16px, 1.4vw, 18px); color: var(--text); max-width: none; }
+      .section .body p + p { margin-top: 16px; }
+      .section .body p a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+
+      /* hero visual full-bleed */
+      .media-full { padding: 8px 0 0; }
+      .visual-slot {
+        position: relative; width: 100%; border: 1px dashed var(--line);
+        border-radius: 14px; background: var(--bg-soft);
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        color: var(--muted); text-align: center; gap: 6px; overflow: hidden;
+      }
+      .visual-slot.ratio-wide { aspect-ratio: 16 / 9; }
+      .visual-slot.ratio-tall { aspect-ratio: 3 / 4; }
+      .visual-slot .vs-label { font-size: 13px; letter-spacing: 0.04em; }
+      .visual-slot .vs-hint { font-size: 12px; color: var(--line); color: rgba(141, 145, 138, 0.7); }
+      figcaption { font-size: 13px; color: var(--muted); margin-top: 12px; }
+
+      .video-shell {
+        position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden;
+        border: 1px solid var(--line); background: #000;
+      }
+      .youtube-embed { display: block; width: 100%; height: 100%; border: 0; }
+      .video-shell video { object-fit: contain; background: #000; }
+      .video-shell video::-webkit-media-controls { opacity: 1; }
+      .video-prompt {
+        position: absolute; inset: 0; display: grid; place-items: center;
+        border: 0; width: 100%; cursor: pointer; background: rgba(0, 0, 0, 0.12);
+        transition: opacity 0.25s ease;
+      }
+      .video-prompt span {
+        display: grid; place-items: center; width: 74px; height: 74px;
+        border: 1px solid rgba(255,255,255,0.65); border-radius: 50%;
+        background: rgba(0,0,0,0.56); color: #fff; font-size: 27px; padding-left: 4px;
+        backdrop-filter: blur(5px);
+      }
+      .video-shell.started .video-prompt { opacity: 0; }
+      .video-control-zone {
+        position: absolute; z-index: 3; inset: auto 0 0; height: 100px;
+      }
+      .video-controls {
+        position: absolute; inset: auto 0 0; display: grid;
+        grid-template-columns: auto minmax(100px, 1fr) auto auto;
+        align-items: center; gap: 12px; padding: 28px 18px 14px;
+        opacity: 0; visibility: hidden; pointer-events: none; color: #fff;
+        background: linear-gradient(transparent, rgba(0,0,0,0.78));
+        transition: opacity 0.2s ease, visibility 0s linear 0.2s;
+      }
+      .video-control-zone:hover .video-controls {
+        opacity: 1; visibility: visible; pointer-events: auto;
+        transition-delay: 0s;
+      }
+      .video-controls button, .video-controls select {
+        height: 30px; border: 0; border-radius: 0; background: transparent; color: #fff;
+        font: 500 11px/1 var(--font-body); letter-spacing: 0.08em; text-transform: uppercase;
+        cursor: pointer;
+      }
+      .video-controls button { min-width: 36px; font-size: 15px; }
+      .video-controls select { min-width: 54px; padding: 0 4px; }
+      #rise-mute { position: relative; width: 36px; min-width: 36px; font-size: 0; }
+      #rise-mute::before {
+        content: ""; position: absolute; left: 9px; top: 9px; width: 14px; height: 12px;
+        background: #fff; clip-path: polygon(0 34%, 36% 34%, 100% 0, 100% 100%, 36% 66%, 0 66%);
+      }
+      #rise-mute::after {
+        content: "))"; position: absolute; left: 20px; top: 8px; color: #fff;
+        font: 500 12px/1 var(--font-body); letter-spacing: 0;
+      }
+      #rise-mute.is-muted::after { content: "×"; left: 23px; top: 7px; font-size: 15px; }
+      .video-progress {
+        width: 100%; height: 2px; accent-color: #fff; cursor: pointer;
+      }
+
+      /* production system */
+      .workstreams {
+        display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 28px;
+        border-top: 1px solid var(--line); border-left: 1px solid var(--line);
+      }
+      .workstream {
+        min-height: 112px; padding: 18px 16px;
+        border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+      }
+      .workstream h3 {
+        font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+        font-weight: 500; margin-bottom: 10px;
+      }
+      .workstream h3::before { content: "▪"; color: var(--accent); margin-right: 10px; }
+      .workstream p { font-size: 10px !important; color: var(--text) !important; }
+      .production-gallery {
+        display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px; margin-top: 28px;
+      }
+      .production-gallery figure { min-width: 0; }
+      .media-rail {
+        display: flex; width: 100%; aspect-ratio: 4 / 3; overflow-x: auto; overflow-y: hidden;
+        scroll-snap-type: x mandatory; overscroll-behavior-x: contain; background: #0a0909;
+        scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.42) transparent;
+      }
+      .media-rail img {
+        flex: 0 0 100%; width: 100%; height: 100%; object-fit: contain; scroll-snap-align: start;
+        cursor: pointer; user-select: none; -webkit-user-drag: none;
+      }
+      .media-rail::-webkit-scrollbar { height: 3px; }
+      .media-rail::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.42); }
+      .lightbox {
+        position: fixed; z-index: 100; inset: 0; display: none; place-items: center;
+        padding: 28px; background: rgba(0,0,0,0.94);
+      }
+      .lightbox.open { display: grid; }
+      .lightbox img {
+        width: auto; height: auto; max-width: 94vw; max-height: 88vh; object-fit: contain;
+        user-select: none; -webkit-user-drag: none;
+      }
+      .lightbox button {
+        position: absolute; top: 22px; right: 24px; width: 40px; height: 40px;
+        border: 0; background: transparent; color: #fff; font-size: 28px; cursor: pointer;
+      }
+      .lightbox .lightbox-nav {
+        top: 50%; transform: translateY(-50%); width: 54px; height: 70px;
+        font-size: 34px; opacity: 0.8;
+      }
+      .lightbox .lightbox-prev { left: 16px; right: auto; }
+      .lightbox .lightbox-next { right: 16px; }
+      .lightbox .lightbox-nav[hidden] { display: none; }
+
+      /* impact stat band */
+      .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 28px; }
+      .stat { padding: 26px 22px; background: var(--bg-soft); border: 1px solid var(--line-soft); border-radius: 14px; }
+      .stat .num { font-family: var(--font-display); font-weight: 400; font-size: clamp(30px, 4vw, 46px); color: var(--accent); line-height: 1; }
+      .stat .lbl { font-size: 13px; color: var(--muted); margin-top: 12px; }
+      .pullquote {
+        font-family: var(--font-display); font-style: italic; font-weight: 400;
+        font-size: clamp(20px, 2.4vw, 28px); line-height: 1.4; max-width: none;
+        border-left: 2px solid var(--accent); padding-left: 22px;
+      }
+      .micro-metrics {
+        display: flex; flex-wrap: wrap; gap: 18px 34px; margin: 34px 0 40px;
+        color: var(--muted); text-transform: uppercase; font-size: 11px; letter-spacing: 0.04em;
+      }
+      .micro-metrics b { color: var(--text); font-size: 20px; font-weight: 500; margin-right: 8px; }
+      .proof {
+        display: grid; grid-template-columns: minmax(220px, 320px) 1fr;
+        align-items: center; gap: clamp(34px, 7vw, 90px); margin: 12px 0 44px;
+      }
+      .phone {
+        position: relative; width: min(100%, 320px); aspect-ratio: 0.475;
+        padding: 10px; border: 1px solid var(--line); border-radius: 38px; background: #090909;
+        box-shadow: 0 26px 70px rgba(0,0,0,0.28);
+      }
+      .phone::before {
+        content: ""; position: absolute; z-index: 2; top: 9px; left: 50%; transform: translateX(-50%);
+        width: 34%; height: 17px; border-radius: 0 0 12px 12px; background: #090909;
+      }
+      .phone img { border-radius: 29px; object-fit: cover; object-position: top; }
+      .proof-copy h3 { margin-bottom: 14px; }
+      .proof-copy p { max-width: none !important; }
+      .proof-meta { margin-top: 24px; color: var(--muted); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; }
+
+      /* credits + tags */
+      .credits-grid { display: block; max-width: 760px; margin-left: auto; }
+      .credits-grid dt { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+      .credits-grid dd { font-size: 15px; }
+      .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+      .tags span { font-size: 12px; color: var(--text); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; }
+
+      /* prev / next */
+      .pager { display: flex; justify-content: space-between; gap: 20px; padding: 44px 0 90px; border-top: 1px solid var(--line-soft); }
+      .pager a { font-size: 14px; color: var(--muted); transition: color 0.25s; }
+      .pager a:hover { color: var(--accent); }
+      .pager .lbl { display: block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; }
+
+      @media (max-width: 760px) {
+        .section-grid { grid-template-columns: 1fr; gap: 14px; }
+        .meta-strip { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+        .stats, .workstreams, .proof { grid-template-columns: 1fr; }
+        .production-gallery { grid-template-columns: 1fr; }
+        .hero h1 { white-space: normal; }
+        .hook { margin-left: 0; }
+        .workstream { min-height: 0; }
+        .phone { margin: 0 auto; }
+        nav { gap: 18px; }
+      }
+      @media (min-width: 761px) and (max-width: 1080px) {
+        .workstreams { grid-template-columns: repeat(2, 1fr); }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor-light" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="../index.html">Audrey&nbsp;<b>Ouyang</b></a>
+        <nav aria-label="Main navigation">
+          <a href="../index.html#work">Work</a>
+          <a href="../index.html#about">About</a>
+          <a href="../index.html#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- 1. HERO -->
+      <section class="hero">
+        <div class="wrap">
+          <a class="back-link" href="../index.html#work">&larr; Back to Work</a>
+          <p class="eyebrow">Experience production · Brand partnership · Live Streaming</p>
+          <h1>D. Forward 4th Anniversary Gala</h1>
+          <p class="hook">A livestreamed anniversary gala, owned end to end — four workstreams, four sponsors, one night built to work as show, sponsor vehicle, and content at once.</p>
+
+          <dl class="meta-strip">
+            <div><dt>Role</dt><dd>Creative Director</dd></div>
+            <div><dt>Year</dt><dd>2018</dd></div>
+            <div><dt>Client / Platform</dt><dd>GEOSKINCARE · WUMENGSHAONIAN / Bilibili Livestream</dd></div>
+            <div><dt>Scale</dt><dd>500 live attendees · 3K concurrent livestream viewers</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- 2. THE BRIEF -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">The Brief</p>
+          <div class="body">
+            <h2>A gala that had to be a live show, a sponsor vehicle, and cross-platform content — all at once.</h2>
+            <p>For a street-dance club's fourth anniversary, one night carried three jobs simultaneously: prove four years of growth to the room, return real value to paying sponsors, and travel as content far beyond a small theatre. The name said it out loud — 佛跳墙: FOUR is our age, DANCE is the life of it, STRONG is where we're headed. Most student galas pick one of those jobs. This one couldn't.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. THE MOVE -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">The Move</p>
+          <div class="body">
+            <h2>Run it as one production, with three audiences in mind.</h2>
+            <p>Rather than bolt sponsorship onto a finished show, I wove it through the entire run — host mentions, on-screen brand material, QR standees, and red-packet giveaways — and tied the biggest reward to the night's climax. The champion of the live 7-to-smoke Battle walked away with the sponsor's prize, so the commercial layer and the cultural high point became the same moment. Sponsors got their spotlight; the crowd got the underground energy they came for.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. HERO VISUAL (full-bleed) -->
+      <section class="media-full reveal">
+        <div class="wrap">
+          <figure>
+            <div class="video-shell" id="rise-video-shell">
+              <iframe class="youtube-embed" src="https://www.youtube-nocookie.com/embed/RVz7T1BjauY?controls=1&amp;rel=0" title="D. Forward 4th Anniversary Gala film" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <figcaption>RISE Captains Special - Featured in the D. Forward 4th Anniversary Gala</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 5. HOW IT WORKED -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">How it worked</p>
+          <div class="body">
+            <p>I co-authored the plan and ran the night as a single production across four workstreams — programme, staging, lighting &amp; screen, and external relations. I first-round-reviewed and cut a full submission down to a tight 16-act bill, then directed the room from a 7-to-smoke Battle through to the closing birthday segment. In parallel I secured and serviced four sponsors, and delivered the whole night across the club's <a href="https://www.bilibili.com/video/BV19t411B7HK/?share_source=copy_web&amp;t=6" target="_blank" rel="noopener noreferrer">Bilibili channel</a>.</p>
+
+            <div class="workstreams">
+              <article class="workstream"><h3>Programme</h3><p>16 acts curated and first-round reviewed; built the show → Battle → birthday arc and the run-of-show.</p></article>
+              <article class="workstream"><h3>Staging</h3><p>One main + two angled side LED screens for depth, plus neon signage (“bat” / “tle”) and wall-edge lights.</p></article>
+              <article class="workstream"><h3>Lighting &amp; Screen</h3><p>Cue-by-cue lighting and bespoke LED content briefed and assigned per act across the bill.</p></article>
+              <article class="workstream"><h3>Sponsorship</h3><p>Four brands secured, then integrated and serviced end to end — mentions, screens, QR, and Battle prizes.</p></article>
+            </div>
+            <div class="production-gallery">
+              <figure>
+                <div class="media-rail" tabindex="0" aria-label="Crew list and ticket designs">
+                  <img src="../files/gala-crew-list.jpg" alt="D. Forward anniversary gala crew list" />
+                  <img src="../files/gala-tickets.png" alt="D. Forward anniversary gala ticket designs" />
+                </div>
+                <figcaption>Crew &amp; Ticket (Swipe right for more)</figcaption>
+              </figure>
+              <figure>
+                <div class="media-rail" tabindex="0" aria-label="Gala highlights">
+                  <img src="../files/gala-highlight-2.jpg" alt="D. Forward anniversary gala highlight 2" />
+                  <img src="../files/gala-highlight-1.jpg" alt="D. Forward anniversary gala highlight 1" />
+                  <img src="../files/gala-highlight-3.jpg" alt="D. Forward anniversary gala highlight 3" />
+                  <img src="../files/gala-highlight-4.jpg" alt="D. Forward anniversary gala highlight 4" />
+                  <img src="../files/gala-highlight-5.jpg" alt="D. Forward anniversary gala highlight 5" />
+                  <img src="../files/gala-highlight-6.jpg" alt="D. Forward anniversary gala highlight 6" />
+                  <img src="../files/gala-highlight-7.jpg" alt="D. Forward anniversary gala highlight 7" />
+                  <img src="../files/gala-highlight-8.jpg" alt="D. Forward anniversary gala highlight 8" />
+                </div>
+                <figcaption>Gala Highlights (Swipe right for more)</figcaption>
+              </figure>
+              <figure>
+                <div class="media-rail" tabindex="0" aria-label="Stage design">
+                  <img src="../files/gala-stage-design.jpg" alt="D. Forward anniversary gala stage design concept" />
+                </div>
+                <figcaption>Screen Setup</figcaption>
+              </figure>
+              <figure>
+                <div class="media-rail" tabindex="0" aria-label="D. Forward team group photo">
+                  <img src="../files/gala-group-photo.jpg" alt="D. Forward team group photo at the anniversary gala" />
+                </div>
+                <figcaption>D. Forward team — backstage at the 4th Anniversary Gala</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. IMPACT -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">Impact</p>
+          <div class="body">
+            <div class="stats">
+              <div class="stat"><div class="num">110K+</div><div class="lbl">Likes on the gala highlight clip on Douyin</div></div>
+              <div class="stat"><div class="num">4</div><div class="lbl">Sponsors secured &amp; integrated end to end</div></div>
+              <div class="stat"><div class="num">16</div><div class="lbl">Acts curated into one live show + Battle bill</div></div>
+            </div>
+            <div class="proof">
+              <div class="phone"><img src="../files/douyin-impact.png" alt="Douyin highlight post showing 110,000 likes" /></div>
+              <div class="proof-copy">
+                <h3 class="eyebrow">Proof</h3>
+                <p>A single highlight from the night, posted to the club's official Douyin (@浙传D.Forward校街舞队), crossed 110,000 likes with thousands of shares — the small-theatre show traveling far past the room it played in.</p>
+                <div class="proof-meta">Douyin · @浙传D.Forward校街舞队 · Posted 6 Jan 2019</div>
+              </div>
+            </div>
+            <blockquote class="pullquote">One night carried as show, sponsor vehicle, and content — on one set of shoulders. The clip alone crossed 110,000 likes.</blockquote>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. CREDITS -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">Credit</p>
+          <div class="body">
+            <dl class="credits-grid">
+              <div><dd>CUZ D. Forward Street Dance Club / Department of Physical Education, Communication University of Zhejiang</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- PREV / NEXT -->
+      <nav class="pager" aria-label="Project navigation">
+        <div class="wrap" style="display:flex; justify-content:space-between; width:min(92%,var(--max));">
+          <a href="cherie-life-chinese-restaurant.html"><span class="lbl">Previous</span><span class="ph">Chinese Restaurant S5 &amp; Cherie Life</span></a>
+          <a href="meet-your-self.html" style="text-align:right;"><span class="lbl">Next</span><span class="ph">Meet Your Self</span></a>
+        </div>
+      </nav>
+    </main>
+    <div class="lightbox" id="image-lightbox" role="dialog" aria-modal="true" aria-label="Expanded image">
+      <button id="lightbox-close" type="button" aria-label="Close expanded image">&times;</button>
+      <button class="lightbox-nav lightbox-prev" id="lightbox-prev" type="button" aria-label="Previous image">&#8249;</button>
+      <img id="lightbox-image" alt="" />
+      <button class="lightbox-nav lightbox-next" id="lightbox-next" type="button" aria-label="Next image">&#8250;</button>
+    </div>
+
+    <script>
+      const light = document.querySelector(".cursor-light");
+      window.addEventListener("pointermove", (e) => {
+        light.style.opacity = "1";
+        light.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      });
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } }),
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+      const lightbox = document.querySelector("#image-lightbox");
+      const lightboxImage = document.querySelector("#lightbox-image");
+      const lightboxPrev = document.querySelector("#lightbox-prev");
+      const lightboxNext = document.querySelector("#lightbox-next");
+      let lightboxItems = [];
+      let lightboxIndex = 0;
+      let lightboxTouchStart = 0;
+      const showLightboxImage = () => {
+        const image = lightboxItems[lightboxIndex];
+        lightboxImage.src = image.currentSrc || image.src;
+        lightboxImage.alt = image.alt;
+        const single = lightboxItems.length < 2;
+        lightboxPrev.hidden = single;
+        lightboxNext.hidden = single;
+      };
+      const moveLightbox = (direction) => {
+        if (lightboxItems.length < 2) return;
+        lightboxIndex = (lightboxIndex + direction + lightboxItems.length) % lightboxItems.length;
+        showLightboxImage();
+      };
+      const closeLightbox = () => {
+        lightbox.classList.remove("open");
+        lightboxImage.removeAttribute("src");
+      };
+      document.querySelectorAll(".production-gallery img").forEach((image) => {
+        image.addEventListener("click", () => {
+          lightboxItems = [...image.closest(".media-rail").querySelectorAll("img")];
+          lightboxIndex = lightboxItems.indexOf(image);
+          showLightboxImage();
+          lightbox.classList.add("open");
+        });
+        image.addEventListener("contextmenu", (event) => event.preventDefault());
+        image.setAttribute("draggable", "false");
+      });
+      document.querySelector("#lightbox-close").addEventListener("click", closeLightbox);
+      lightboxPrev.addEventListener("click", () => moveLightbox(-1));
+      lightboxNext.addEventListener("click", () => moveLightbox(1));
+      lightbox.addEventListener("click", (event) => { if (event.target === lightbox) closeLightbox(); });
+      lightboxImage.addEventListener("contextmenu", (event) => event.preventDefault());
+      lightboxImage.setAttribute("draggable", "false");
+      lightbox.addEventListener("touchstart", (event) => { lightboxTouchStart = event.changedTouches[0].clientX; }, { passive: true });
+      lightbox.addEventListener("touchend", (event) => {
+        const delta = event.changedTouches[0].clientX - lightboxTouchStart;
+        if (Math.abs(delta) > 45) moveLightbox(delta > 0 ? -1 : 1);
+      }, { passive: true });
+      window.addEventListener("keydown", (event) => {
+        if (!lightbox.classList.contains("open")) return;
+        if (event.key === "Escape") closeLightbox();
+        if (event.key === "ArrowLeft") moveLightbox(-1);
+        if (event.key === "ArrowRight") moveLightbox(1);
+      });
+    </script>
+    <script src="../project-embed.js?project=4&amp;v=20260614c"></script>
+  </body>
+</html>

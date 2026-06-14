@@ -1,0 +1,364 @@
+<!doctype html>
+<!--
+  SKELETON A — BRAND / PRODUCTION CASE
+  内部规划（不上页面，仅供下笔时对齐方向）:
+    叙事目的: ____
+    证明能力 / Proves: 主 ____ · 副 ____
+  填写说明:
+    - 带 class="ph" 的方括号文字是占位，填完后删掉文字与 class 即可。
+    - .visual-slot 是放图/视频的槽位，按其中注释替换成 <img> 或 <video>。
+    - 这是独立可预览文件；并入正式站点时，把 <style> 内容移进 styles.css 并对齐你的设计变量。
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Project detail — brand / production case." />
+    <title>Audrey Ouyang | Sisters Who Make Waves</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #242020;
+        --bg-soft: #2c2825;
+        --text: #dfdfdf;
+        --muted: #938d89;
+        --line: rgba(223, 223, 223, 0.14);
+        --line-soft: rgba(223, 223, 223, 0.07);
+        --accent: #9bc862;
+        --font-display: "Optima", "Optima nova", "URW Classico", Candara, "Gill Sans", "Gill Sans MT", "Segoe UI", sans-serif;
+        --font-body: "Manrope", system-ui, sans-serif;
+        --max: 1180px;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-body);
+        font-weight: 400;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      a { color: inherit; text-decoration: none; }
+      img, video, iframe { display: block; width: 100%; height: 100%; }
+      img, video { object-fit: cover; }
+
+      .cursor-light {
+        position: fixed; top: 0; left: 0; width: 520px; height: 520px;
+        margin: -260px 0 0 -260px; pointer-events: none; z-index: 0;
+        background: radial-gradient(circle, rgba(155, 200, 98, 0.12), transparent 60%);
+        transition: opacity 0.4s ease; opacity: 0;
+      }
+
+      .wrap { width: min(92%, var(--max)); margin: 0 auto; }
+
+      .site-header {
+        position: sticky; top: 0; z-index: 10;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 22px 0; backdrop-filter: blur(8px);
+        background: linear-gradient(var(--bg), rgba(11, 14, 13, 0.4));
+        border-bottom: 1px solid var(--line-soft);
+      }
+      .site-header .wrap { display: flex; align-items: center; justify-content: space-between; }
+      .brand { font-family: var(--font-display); font-size: 19px; letter-spacing: 0.01em; }
+      .brand b { color: var(--accent); font-weight: 500; }
+      nav { display: flex; gap: 28px; font-size: 14px; }
+      nav a { color: var(--muted); transition: color 0.25s; }
+      nav a:hover { color: var(--text); }
+
+      .eyebrow {
+        font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+        color: var(--accent); font-weight: 500;
+      }
+      .ph { color: var(--muted); border-bottom: 1px dotted var(--line); }
+
+      /* reveal */
+      .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+      @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+      /* HERO */
+      .hero { position: relative; padding: 80px 0 56px; }
+      .hero::before {
+        content: ""; position: absolute; top: -120px; left: 50%; width: 760px; height: 520px;
+        transform: translateX(-50%); z-index: -1;
+        background: radial-gradient(ellipse at center, rgba(155, 200, 98, 0.14), transparent 65%);
+        filter: blur(20px);
+      }
+      .back-link { font-size: 13px; color: var(--muted); display: inline-flex; gap: 8px; margin-bottom: 40px; }
+      .back-link:hover { color: var(--text); }
+      .hero h1 {
+        font-family: var(--font-display); font-weight: 500;
+        font-size: clamp(40px, 7vw, 84px); line-height: 1.05; letter-spacing: -0.005em;
+        margin: 14px 0 0; max-width: none; color: var(--accent); white-space: nowrap;
+      }
+      .hook {
+        font-family: var(--font-display); font-weight: 400; font-style: italic;
+        font-size: clamp(20px, 2.6vw, 30px); line-height: 1.35; color: var(--text);
+        max-width: 100%; margin: 28px 0 0;
+      }
+      .meta-strip {
+        display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 64px;
+        margin-top: 52px; padding-top: 26px; border-top: 1px solid var(--line);
+      }
+      .meta-strip dt { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+      .meta-strip dd { font-size: 15px; }
+
+      /* generic editorial section: label left, body right */
+      .section { padding: 60px 0; border-top: 1px solid var(--line-soft); }
+      .section-grid { display: grid; grid-template-columns: minmax(0, 210px) 1fr; gap: 40px; }
+      .section h2 {
+        font-family: var(--font-display); font-weight: 500; font-size: clamp(24px, 3vw, 34px);
+        line-height: 1.18; letter-spacing: -0.005em; margin-bottom: 18px; color: var(--accent);
+      }
+      .section .body p { font-size: clamp(16px, 1.4vw, 18px); color: var(--text); max-width: 100%; }
+      .section .body p + p { margin-top: 16px; }
+
+      /* hero visual full-bleed */
+      .media-full { padding: 8px 0 0; }
+      .visual-slot {
+        position: relative; width: 100%; border: 1px dashed var(--line);
+        border-radius: 14px; background: var(--bg-soft);
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        color: var(--muted); text-align: center; gap: 6px; overflow: hidden;
+      }
+      .visual-slot.ratio-wide { aspect-ratio: 16 / 9; }
+      .visual-slot.ratio-tall { aspect-ratio: 3 / 4; }
+      .visual-slot .vs-label { font-size: 13px; letter-spacing: 0.04em; }
+      .visual-slot .vs-hint { font-size: 12px; color: var(--line); color: rgba(141, 145, 138, 0.7); }
+      .visual-slot.has-media { border-style: solid; border-color: var(--line-soft); background: #111; }
+      .visual-slot.pdf-viewer { align-items: stretch; justify-content: stretch; background: #f3f0e8; }
+      .visual-slot.pdf-viewer iframe { border: 0; background: #f3f0e8; }
+      .pdf-shell { position: relative; width: 100%; height: 100%; overflow: hidden; }
+      .pdf-embed {
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+      figcaption { font-size: 13px; color: var(--muted); margin-top: 12px; }
+
+      /* supporting gallery */
+      .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 28px; }
+      .gallery figure { min-width: 0; }
+      .gallery figcaption { min-height: 1.6em; }
+
+      /* impact stat band */
+      .stats { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin-bottom: 0; }
+      .stat { padding: 26px 22px; background: transparent; border: 0; border-radius: 0; }
+      .stat + .stat { border-left: 1px solid var(--line); }
+      .stat .num { font-family: var(--font-display); font-weight: 500; font-size: clamp(34px, 5vw, 52px); color: var(--accent); line-height: 1; }
+      .stat .lbl { font-size: 13px; color: var(--muted); margin-top: 14px; max-width: 20ch; line-height: 1.45; }
+      .recognition { list-style: none; display: grid; gap: 10px; margin: 34px 0 30px; }
+      .recognition li { position: relative; padding-left: 20px; font-size: 15px; line-height: 1.5; color: var(--text); max-width: 100%; }
+      .recognition li::before { content: "•"; position: absolute; left: 4px; top: -1px; color: var(--accent); font-size: 16px; }
+      .recognition a { color: var(--accent); border-bottom: 1px solid rgba(155, 200, 98, 0.4); }
+      .recognition a:hover { border-bottom-color: var(--accent); }
+      .pullquote {
+        font-family: var(--font-display); font-style: italic; font-weight: 400;
+        font-size: clamp(20px, 2.4vw, 28px); line-height: 1.4; max-width: 100%;
+        border-left: 2px solid var(--accent); padding-left: 22px; margin: 0;
+      }
+
+      /* credits + tags */
+      .credits-grid { display: grid; grid-template-columns: 1fr; gap: 28px; }
+      .credits-grid dt { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+      .credits-grid dd { white-space: nowrap; }
+      .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+      .tags span { font-size: 12px; color: var(--text); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; }
+
+      /* prev / next */
+      .pager { display: flex; justify-content: space-between; gap: 20px; padding: 44px 0 90px; border-top: 1px solid var(--line-soft); }
+      .pager a { font-size: 14px; color: var(--muted); transition: color 0.25s; }
+      .pager a:hover { color: var(--accent); }
+      .pager .lbl { display: block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; }
+
+      @media (max-width: 760px) {
+        .hero h1 { white-space: normal; }
+        .section-grid { grid-template-columns: 1fr; gap: 14px; }
+        .meta-strip { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+        .stats { grid-template-columns: repeat(2, 1fr); }
+        .stat:nth-child(odd) { border-left: 0; }
+        .stat:nth-child(n+3) { border-top: 1px solid var(--line); }
+        .gallery, .credits-grid { grid-template-columns: 1fr; }
+        .credits-grid dd { white-space: normal; }
+        nav { gap: 18px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor-light" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="../index.html">Audrey&nbsp;<b>Ouyang</b></a>
+        <nav aria-label="Main navigation">
+          <a href="../index.html#work">Work</a>
+          <a href="../index.html#about">About</a>
+          <a href="../index.html#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- 1. HERO -->
+      <section class="hero">
+        <div class="wrap">
+          <a class="back-link" href="../index.html#work">&larr; Back to Work</a>
+          <p class="eyebrow">Live Production · Reality Show · Culture-Led Commerce</p>
+          <h1>Sisters Who Make Waves · S1</h1>
+          <p class="hook">One of China’s most-watched reality formats — built to run live, flawlessly, every week.</p>
+
+          <dl class="meta-strip">
+            <div><dt>Role</dt><dd>Stage Creative Producer</dd></div>
+            <div><dt>Year</dt><dd>Mar 2020 - Sep 2020</dd></div>
+            <div><dt>Client / Platform</dt><dd>Thanmelin/Mango TV &amp; Hunan TV Entertainment Channel</dd></div>
+            <div><dt>Scale</dt><dd>National prime-time · weekly live</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- 2. THE BRIEF -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">The Brief</p>
+          <div class="body">
+            <h2>One of China's biggest reality formats every broadcast must land flawlessly.</h2>
+            <p>A tentpole reality show is a commercial engine: ratings, sponsors, and social buzz all ride on the live broadcast going perfectly — on camera, on the LED wall, and in the room, all at once. With no second take and a new episode every week, the challenge wasn't one great look; it was making "flawless" repeatable.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. THE MOVE -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">The Move</p>
+          <div class="body">
+            <h2>Design the system, not the episode.</h2>
+            <p>Rather than art-direct every episode from scratch, the show was built as a system — cue sheets, screen-content specs, and stage-to-broadcast handoffs that anyone on the team could run. The visual identity stayed consistent while the machine behind it scaled to weekly delivery.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. HERO VISUAL (full-bleed) -->
+      <section class="media-full reveal">
+        <div class="wrap">
+          <figure>
+            <!-- 替换为视频:  <video src="../assets/work/____.mp4" poster="../assets/work/____.jpg" muted loop playsinline autoplay></video>
+                 或图片:    <img src="../assets/work/____.jpg" alt="____" />  -->
+            <div class="visual-slot ratio-wide has-media">
+              <img src="../files/sisters-hero-stage.jpg" alt="Sisters Who Make Waves live stage performance with red and white beams." />
+            </div>
+            <figcaption>Opening show of 4th public performance</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 5. HOW IT WORKED -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">How it worked</p>
+          <div class="body">
+            <p>I contributed stage-visual concepts — light-and-shadow, mirror-light, drone-integrated, and character-driven performance directions — then turned them into the documents the live show actually ran on: cue sheets, copywriting, visual references, and sample-edit materials for multiple performance scenes. Across rehearsals and live production I coordinated with the directing, camera, lighting, visual-technology, props, and audio teams so every cue landed on air, on time.</p>
+
+            <div class="gallery">
+              <figure>
+                <div class="visual-slot ratio-tall pdf-viewer">
+                  <div class="pdf-shell">
+                    <iframe class="pdf-embed" src="../files/sisters-cue-sheet.pdf#toolbar=0&amp;navpanes=0&amp;scrollbar=1&amp;view=FitH" title="Special effects cue sheet preview"></iframe>
+                  </div>
+                </div>
+                <figcaption>Special Effects Cue Planning (Zoom Out to See More)</figcaption>
+              </figure>
+              <figure>
+                <div class="visual-slot ratio-tall has-media">
+                  <img src="../files/sisters-3rd-block.jpeg" alt="Production block reference for Sisters Who Make Waves." />
+                </div>
+                <figcaption>Stage Visual Development</figcaption>
+              </figure>
+              <figure>
+                <div class="visual-slot ratio-tall has-media">
+                  <img src="../files/sisters-portrait.jpg" alt="Audrey Ouyang backstage at Sisters Who Make Waves." />
+                </div>
+                <figcaption>On-Site Production Support</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. IMPACT -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">Impact</p>
+          <div class="body">
+            <div class="stats">
+              <div class="stat"><div class="num">96</div><div class="lbl">Weibo hot-search #1 (of 645)</div></div>
+              <div class="stat"><div class="num">217</div><div class="lbl">Douyin hot searches</div></div>
+              <div class="stat"><div class="num">40</div><div class="lbl">Trending spots · finale night, 24h</div></div>
+              <div class="stat"><div class="num">15</div><div class="lbl">Hot searches on the board at once</div></div>
+            </div>
+            <ul class="recognition">
+              <li>
+                <a href="https://fun.youth.cn/gnzx/202009/t20200930_12515339.htm" target="_blank" rel="noopener">Best Online Variety Show</a>
+                — 4th 网影盛典 (China Internet Film &amp; TV Gala)
+              </li>
+              <li>
+                Format adapted for
+                <a href="https://www.contentasia.tv/news/vietnamese-adaptation-mango-tvs-singing-format-makes-waves" target="_blank" rel="noopener">Vietnam's VTV3</a>
+                — #1 in its prime-time slot, a national variety sponsorship record
+              </li>
+              <li>
+                Studied as a phenomenon — from
+                <a href="https://chinafilminsider.com/what-the-sisters-who-make-waves-sensation-says-about-chinese-shoppers/" target="_blank" rel="noopener">Jing Daily</a>'s
+                brand-strategy feature to a
+                <a href="https://www.researchgate.net/publication/361903639_Discursive_Construction_of_Chinese_Women_Exploring_the_Multi-perception_Discourses_of_the_Reality_Show_Sisters_Who_Make_Waves" target="_blank" rel="noopener">Master's thesis</a>
+                on gender in Chinese media
+              </li>
+            </ul>
+            <blockquote class="pullquote">It reset how China talks about women over 30 — and got studied in gender research, not just streamed.</blockquote>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. CREDITS -->
+      <section class="section reveal">
+        <div class="wrap section-grid">
+          <p class="eyebrow">Credit</p>
+          <div class="body">
+            <dl class="credits-grid" style="margin-bottom: 28px;">
+              <div><dd>Mango TV · Zhejiang Keyi Communication &amp; Media Co., Ltd</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- PREV / NEXT -->
+      <nav class="pager" aria-label="Project navigation">
+        <div class="wrap" style="display:flex; justify-content:space-between; width:min(92%,var(--max));">
+          <a href="herborist.html"><span class="lbl">Previous</span><span class="ph">Herborist &amp; Yanxi Palace</span></a>
+          <a href="cherie-life-chinese-restaurant.html" style="text-align:right;"><span class="lbl">Next</span><span class="ph">Chinese Restaurant S5 &amp; Cherie Life</span></a>
+        </div>
+      </nav>
+    </main>
+
+    <script>
+      const light = document.querySelector(".cursor-light");
+      window.addEventListener("pointermove", (e) => {
+        light.style.opacity = "1";
+        light.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      });
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } }),
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    </script>
+    <script src="../project-embed.js?project=2&amp;v=20260614b"></script>
+  </body>
+</html>
